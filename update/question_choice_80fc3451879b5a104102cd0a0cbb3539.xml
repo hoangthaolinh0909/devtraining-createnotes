@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <misc>0</misc>
+        <order>120</order>
+        <published_ref/>
+        <question display_value="Sense of cooperation and helpfulness (inter / extra team)">7ebc349d875b5a104102cd0a0cbb35ec</question>
+        <rec_misc>0</rec_misc>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 15:41:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>80fc3451879b5a104102cd0a0cbb3539</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Dissatisfied</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>question_choice_80fc3451879b5a104102cd0a0cbb3539</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 15:41:32</sys_updated_on>
+        <text>Dissatisfied</text>
+        <u_score/>
+        <value>2</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=80fc3451879b5a104102cd0a0cbb3539"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="CHF">CHF</currency>
+        <field>misc</field>
+        <id>80fc3451879b5a104102cd0a0cbb3539</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="CHF">CHF</reference_currency>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 15:41:32</sys_created_on>
+        <sys_id>00fc3451879b5a104102cd0a0cbb3541</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 15:41:32</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="CHF">CHF</currency>
+        <field>rec_misc</field>
+        <id>80fc3451879b5a104102cd0a0cbb3539</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="CHF">CHF</reference_currency>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 15:41:32</sys_created_on>
+        <sys_id>c4fc3451879b5a104102cd0a0cbb3540</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 15:41:32</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+</record_update>

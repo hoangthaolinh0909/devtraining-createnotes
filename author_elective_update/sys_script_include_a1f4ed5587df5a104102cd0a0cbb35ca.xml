@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_createnotes.HVSUserContractUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>HVSUserContractUtils</name>
+        <sandbox_callable>true</sandbox_callable>
+        <script><![CDATA[var HVSUserContractUtils = Class.create();
+HVSUserContractUtils.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+	isUserPartOfDepartment : function(userId, departments){
+		var userContractDetails = this.getDetailsFromAllUserContracts(userId);
+		var userDepartments = userContractDetails.departments;
+
+		//Rajoute le département présent sur sys_user au cas ou l'utilisateur n'as pas de contrats
+		var user = gs.getUser().getUserByID(userId);
+		var userDepartment = user.getDepartmentID();
+
+		if(userDepartments.indexOf(userDepartment) === -1)
+			userDepartments.push(userDepartment);
+
+		return userDepartments.some(function(userDep){
+			return departments.indexOf(userDep) > -1;
+		});
+
+	},
+
+	isUserPartOfCompany : function(userId, companies){
+		var userContractDetails = this.getDetailsFromAllUserContracts(userId);
+		var userCompanies = userContractDetails.companies;
+
+		//Rajoute la compagnie présent sur sys_user au cas ou l'utilisateur n'as pas de contrats
+		var user = gs.getUser().getUserByID(userId);
+		var userCompany = user.getCompanyID();
+
+		if(userCompanies.indexOf(userCompany) === -1)
+			userCompanies.push(userCompany);
+
+		return userCompanies.some(function(userComp){
+			return companies.indexOf(userComp) > -1;
+		});
+	},
+	
+	getDetailsFromAllUserContracts : function(userId){
+		var depts = [];
+		var companies = [];
+
+		
+		if(userId){
+			var uc = new GlideRecord('u_hvs_user_contract');
+			uc.addQuery('u_user', userId);
+			uc.addQuery('u_active', true);
+			uc.query();
+			while(uc.next()){
+				var dept = uc.getValue('u_departement_ref');
+				var company = uc.getValue('u_company');
+				if(depts.indexOf(dept) === -1)
+					depts.push(dept);
+				if(companies.indexOf(company) === -1)
+					companies.push(company);
+			}
+		}
+
+		var contractDetails = {};
+		contractDetails.companies = companies;
+		contractDetails.departments = depts;
+
+		return contractDetails;
+
+	},
+
+    getContractInfos: function() {
+        var contract_object = {};
+        var gr = new GlideRecord('u_hvs_user_contract');
+
+        gr.get(this.getParameter('sysparm_contract_id'));
+
+        if (gr) {
+            contract_object['active'] = gr.getValue('u_active');
+            contract_object['manager_id'] = gr.getValue('u_user_managers');
+            contract_object['manager'] = gr.getDisplayValue('u_user_managers');
+            contract_object['dept_id'] = gr.getValue('u_departement_ref');
+            contract_object['dept'] = gr.getDisplayValue('u_departement_ref');
+            contract_object['job_location'] = gr.getValue('u_user_job_location');
+            contract_object['company_id'] = gr.getValue('u_company');
+            contract_object['company'] = gr.getDisplayValue('u_company');
+            contract_object['activity_rate'] = gr.getDisplayValue('u_activity_rate');
+            contract_object['funct'] = gr.getDisplayValue('u_user_label_code');
+            contract_object['contract_type_id'] = gr.getValue('u_contract_type');
+            contract_object['contract_type'] = gr.getDisplayValue('u_contract_type');
+            contract_object['contrat_number'] = gr.getDisplayValue('u_contrat_number');
+            contract_object['commitment_date'] = gr.getDisplayValue('u_user_commitment_date');
+            contract_object['end_date'] = gr.getDisplayValue('u_user_end_date');
+
+        }
+
+        return JSON.stringify(contract_object);
+    },
+
+    getPreferredContract: function() {
+        var u = gs.getUser().getUserByID(this.getParameter('sysparm_user_id'));
+
+        // PSO - 16.09.2021
+        // Return first active contract if preferred contract is not active
+        var sContractID = this._CheckPreferredContract(u.getPreference('hvs.user_contract.prefered'), this.getParameter('sysparm_user_id'));
+        return sContractID;
+        //return u.getPreference('hvs.user_contract.prefered');
+    },
+
+    _CheckPreferredContract: function(contract_id, user_id) {
+        var retValue;
+        var grUHUC = new GlideRecord('u_hvs_user_contract');
+        grUHUC.addEncodedQuery('u_user=' + user_id + 'sys_id=' + contract_id + '^u_active=true');
+        grUHUC.query();
+        if (grUHUC.hasNext()) {
+            retValue = '' + contract_id;
+        } else {
+            var grUHUC_GetFirstActive = new GlideRecord('u_hvs_user_contract');
+            grUHUC_GetFirstActive.addEncodedQuery('u_user=' + user_id + '^u_active=true');
+            grUHUC_GetFirstActive.setLimit(1);
+            grUHUC_GetFirstActive.orderBy('sys_created_on');
+            grUHUC_GetFirstActive.query();
+            if (grUHUC_GetFirstActive.hasNext()) {
+				grUHUC_GetFirstActive.next();
+                retValue = '' + grUHUC_GetFirstActive.sys_id;
+                var u = gs.getUser().getUserByID(user_id);
+                u.savePreference('hvs.user_contract.prefered', retValue);
+            }
+        }
+
+        return retValue;
+    },
+
+    setPreferredContract: function() {
+        var u = gs.getUser().getUserByID(this.getParameter('sysparm_user_id'));
+        var contract_id = this.getParameter('sysparm_contract_id');
+        u.savePreference('hvs.user_contract.prefered', contract_id);
+        return;
+    },
+
+    type: 'HVSUserContractUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:36:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a1f4ed5587df5a104102cd0a0cbb35ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HVSUserContractUtils</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sys_script_include_a1f4ed5587df5a104102cd0a0cbb35ca</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:36:25</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sys_script_include_a1f4ed5587df5a104102cd0a0cbb35ca</name>
+        <order/>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_createnotes.HVSUserContractUtils&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;HVSUserContractUtils&lt;/name&gt;&lt;sandbox_callable&gt;true&lt;/sandbox_callable&gt;&lt;script&gt;&lt;![CDATA[var HVSUserContractUtils = Class.create();
+HVSUserContractUtils.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+	isUserPartOfDepartment : function(userId, departments){
+		var userContractDetails = this.getDetailsFromAllUserContracts(userId);
+		var userDepartments = userContractDetails.departments;
+
+		//Rajoute le département présent sur sys_user au cas ou l'utilisateur n'as pas de contrats
+		var user = gs.getUser().getUserByID(userId);
+		var userDepartment = user.getDepartmentID();
+
+		if(userDepartments.indexOf(userDepartment) === -1)
+			userDepartments.push(userDepartment);
+
+		return userDepartments.some(function(userDep){
+			return departments.indexOf(userDep) &gt; -1;
+		});
+
+	},
+
+	isUserPartOfCompany : function(userId, companies){
+		var userContractDetails = this.getDetailsFromAllUserContracts(userId);
+		var userCompanies = userContractDetails.companies;
+
+		//Rajoute la compagnie présent sur sys_user au cas ou l'utilisateur n'as pas de contrats
+		var user = gs.getUser().getUserByID(userId);
+		var userCompany = user.getCompanyID();
+
+		if(userCompanies.indexOf(userCompany) === -1)
+			userCompanies.push(userCompany);
+
+		return userCompanies.some(function(userComp){
+			return companies.indexOf(userComp) &gt; -1;
+		});
+	},
+	
+	getDetailsFromAllUserContracts : function(userId){
+		var depts = [];
+		var companies = [];
+
+		
+		if(userId){
+			var uc = new GlideRecord('u_hvs_user_contract');
+			uc.addQuery('u_user', userId);
+			uc.addQuery('u_active', true);
+			uc.query();
+			while(uc.next()){
+				var dept = uc.getValue('u_departement_ref');
+				var company = uc.getValue('u_company');
+				if(depts.indexOf(dept) === -1)
+					depts.push(dept);
+				if(companies.indexOf(company) === -1)
+					companies.push(company);
+			}
+		}
+
+		var contractDetails = {};
+		contractDetails.companies = companies;
+		contractDetails.departments = depts;
+
+		return contractDetails;
+
+	},
+
+    getContractInfos: function() {
+        var contract_object = {};
+        var gr = new GlideRecord('u_hvs_user_contract');
+
+        gr.get(this.getParameter('sysparm_contract_id'));
+
+        if (gr) {
+            contract_object['active'] = gr.getValue('u_active');
+            contract_object['manager_id'] = gr.getValue('u_user_managers');
+            contract_object['manager'] = gr.getDisplayValue('u_user_managers');
+            contract_object['dept_id'] = gr.getValue('u_departement_ref');
+            contract_object['dept'] = gr.getDisplayValue('u_departement_ref');
+            contract_object['job_location'] = gr.getValue('u_user_job_location');
+            contract_object['company_id'] = gr.getValue('u_company');
+            contract_object['company'] = gr.getDisplayValue('u_company');
+            contract_object['activity_rate'] = gr.getDisplayValue('u_activity_rate');
+            contract_object['funct'] = gr.getDisplayValue('u_user_label_code');
+            contract_object['contract_type_id'] = gr.getValue('u_contract_type');
+            contract_object['contract_type'] = gr.getDisplayValue('u_contract_type');
+            contract_object['contrat_number'] = gr.getDisplayValue('u_contrat_number');
+            contract_object['commitment_date'] = gr.getDisplayValue('u_user_commitment_date');
+            contract_object['end_date'] = gr.getDisplayValue('u_user_end_date');
+
+        }
+
+        return JSON.stringify(contract_object);
+    },
+
+    getPreferredContract: function() {
+        var u = gs.getUser().getUserByID(this.getParameter('sysparm_user_id'));
+
+        // PSO - 16.09.2021
+        // Return first active contract if preferred contract is not active
+        var sContractID = this._CheckPreferredContract(u.getPreference('hvs.user_contract.prefered'), this.getParameter('sysparm_user_id'));
+        return sContractID;
+        //return u.getPreference('hvs.user_contract.prefered');
+    },
+
+    _CheckPreferredContract: function(contract_id, user_id) {
+        var retValue;
+        var grUHUC = new GlideRecord('u_hvs_user_contract');
+        grUHUC.addEncodedQuery('u_user=' + user_id + 'sys_id=' + contract_id + '^u_active=true');
+        grUHUC.query();
+        if (grUHUC.hasNext()) {
+            retValue = '' + contract_id;
+        } else {
+            var grUHUC_GetFirstActive = new GlideRecord('u_hvs_user_contract');
+            grUHUC_GetFirstActive.addEncodedQuery('u_user=' + user_id + '^u_active=true');
+            grUHUC_GetFirstActive.setLimit(1);
+            grUHUC_GetFirstActive.orderBy('sys_created_on');
+            grUHUC_GetFirstActive.query();
+            if (grUHUC_GetFirstActive.hasNext()) {
+				grUHUC_GetFirstActive.next();
+                retValue = '' + grUHUC_GetFirstActive.sys_id;
+                var u = gs.getUser().getUserByID(user_id);
+                u.savePreference('hvs.user_contract.prefered', retValue);
+            }
+        }
+
+        return retValue;
+    },
+
+    setPreferredContract: function() {
+        var u = gs.getUser().getUserByID(this.getParameter('sysparm_user_id'));
+        var contract_id = this.getParameter('sysparm_contract_id');
+        u.savePreference('hvs.user_contract.prefered', contract_id);
+        return;
+    },
+
+    type: 'HVSUserContractUtils'
+});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;h40009222&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-01-23 18:36:25&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;a1f4ed5587df5a104102cd0a0cbb35ca&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;HVSUserContractUtils&lt;/sys_name&gt;&lt;sys_package display_value="CreateNotes" source="x_snc_createnotes"&gt;df5fd9a5090232007f44e1046c8ff69f&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="CreateNotes"&gt;df5fd9a5090232007f44e1046c8ff69f&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_a1f4ed5587df5a104102cd0a0cbb35ca&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;h40009222&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-01-23 18:36:25&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-542046525</payload_hash>
+        <record_name>HVSUserContractUtils</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:36:25</sys_created_on>
+        <sys_id>3df4ed5587df5a104102cd0a0cbb35ce</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194947382030000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:36:25</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>25f4ed55dcdf5a109b4556b58476a5cd</update_guid>
+        <update_guid_history>25f4ed55dcdf5a109b4556b58476a5cd:-542046525</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:37:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>020850234a144caca3bd04aece947b10</sys_id>
+        <sys_metadata>a1f4ed5587df5a104102cd0a0cbb35ca</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HVSUserContractUtils</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sys_script_include_a1f4ed5587df5a104102cd0a0cbb35ca</sys_update_name>
+        <sys_update_version display_value="sys_script_include_a1f4ed5587df5a104102cd0a0cbb35ca">3df4ed5587df5a104102cd0a0cbb35ce</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:37:11</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

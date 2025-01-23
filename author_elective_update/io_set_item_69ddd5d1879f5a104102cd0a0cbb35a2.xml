@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item">
+    <io_set_item action="DELETE">
+        <order>10</order>
+        <sc_cat_item display_value="Review Form">ef681c9d87175a104102cd0a0cbb35bc</sc_cat_item>
+        <sys_class_name>io_set_item</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:05:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>69ddd5d1879f5a104102cd0a0cbb35a2</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Common User Information.Review Form</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>io_set_item_69ddd5d1879f5a104102cd0a0cbb35a2</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:05:41</sys_updated_on>
+        <variable_set display_value="Common User Information">0c02d8224f802b80e472ca1f0310c7bc</variable_set>
+    </io_set_item>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>io_set_item_69ddd5d1879f5a104102cd0a0cbb35a2</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item"><io_set_item action="INSERT_OR_UPDATE"><order>10</order><sc_cat_item display_value="Review Form">ef681c9d87175a104102cd0a0cbb35bc</sc_cat_item><sys_class_name>io_set_item</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-01-23 18:05:17</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>69ddd5d1879f5a104102cd0a0cbb35a2</sys_id><sys_mod_count>2</sys_mod_count><sys_name>Common User Information.Review Form</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>io_set_item_69ddd5d1879f5a104102cd0a0cbb35a2</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-01-23 18:05:41</sys_updated_on><variable_set display_value="Common User Information">0c02d8224f802b80e472ca1f0310c7bc</variable_set></io_set_item></record_update>]]></payload>
+        <payload_hash>-479192585</payload_hash>
+        <record_name>Common User Information.Review Form</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:05:41</sys_created_on>
+        <sys_id>e3ed5919879f5a104102cd0a0cbb358c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19494575e3a0000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:05:41</sys_updated_on>
+        <type>Catalog Variable Set</type>
+        <update_guid>67ed5919d29f5a1019d5fdea302ad18b</update_guid>
+        <update_guid_history>67ed5919d29f5a1019d5fdea302ad18b:-479192585,a1dd5dd5909f5a103661f26f3ab1ed32:491672387</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Record deleted 23.01.2025 19:06:21">cd1ed955879f5a104102cd0a0cbb353b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:06:21</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="io_set_item">io_set_item</sys_db_object>
+        <sys_id>1ee8faad81db44a089d7ade00c09fa44</sys_id>
+        <sys_metadata>69ddd5d1879f5a104102cd0a0cbb35a2</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Common User Information.Review Form</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>io_set_item_69ddd5d1879f5a104102cd0a0cbb35a2</sys_update_name>
+        <sys_update_version display_value="io_set_item_69ddd5d1879f5a104102cd0a0cbb35a2">e3ed5919879f5a104102cd0a0cbb358c</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:06:21</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="DELETE">
+        <id>search-global-notes-creation</id>
+        <sp_widget display_value="Creation Notes Topic Content">b0927b7c879f96104102cd0a0cbb3552</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-22 16:52:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2123c4c18753d6104102cd0a0cbb359d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>search-global-notes-creation</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_ng_template_2123c4c18753d6104102cd0a0cbb359d</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-22 16:52:11</sys_updated_on>
+        <template><![CDATA[<p class="expand-search-message">{{data.expandSearchMsg}}</p>
+
+        <a class="quick-link" ng-href="{{getExpandSearchURL()}}" data-toggle="tooltip" data-container="body"
+          aria-labelledby="{{data.expandSearchLink}}" title="{{data.expandSearchLink}}" ng-click="setSessionData()">
+          {{data.expandSearchLink}}
+          <span class="sr-only" id="{{data.expandSearchLink}}-ext-link}" ng-if="(item.target == '_blank')">${, opens
+            in a new window}
+          </span>
+        </a>]]></template>
+    </sp_ng_template>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sp_ng_template_2123c4c18753d6104102cd0a0cbb359d</name>
+        <order/>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_ng_template"&gt;&lt;sp_ng_template action="INSERT_OR_UPDATE"&gt;&lt;id&gt;search-global-notes-creation&lt;/id&gt;&lt;sp_widget display_value="Creation Notes Topic Content"&gt;b0927b7c879f96104102cd0a0cbb3552&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_ng_template&lt;/sys_class_name&gt;&lt;sys_created_by&gt;h40009222&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-01-22 16:52:11&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;2123c4c18753d6104102cd0a0cbb359d&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;search-global-notes-creation&lt;/sys_name&gt;&lt;sys_package display_value="CreateNotes" source="x_snc_createnotes"&gt;df5fd9a5090232007f44e1046c8ff69f&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="CreateNotes"&gt;df5fd9a5090232007f44e1046c8ff69f&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_ng_template_2123c4c18753d6104102cd0a0cbb359d&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;h40009222&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-01-22 16:52:11&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;p class="expand-search-message"&gt;{{data.expandSearchMsg}}&lt;/p&gt;
+
+        &lt;a class="quick-link" ng-href="{{getExpandSearchURL()}}" data-toggle="tooltip" data-container="body"
+          aria-labelledby="{{data.expandSearchLink}}" title="{{data.expandSearchLink}}" ng-click="setSessionData()"&gt;
+          {{data.expandSearchLink}}
+          &lt;span class="sr-only" id="{{data.expandSearchLink}}-ext-link}" ng-if="(item.target == '_blank')"&gt;${, opens
+            in a new window}
+          &lt;/span&gt;
+        &lt;/a&gt;]]&gt;&lt;/template&gt;&lt;/sp_ng_template&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1077173791</payload_hash>
+        <record_name>search-global-notes-creation</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-22 16:52:11</sys_created_on>
+        <sys_id>0d8348058753d6104102cd0a0cbb35cd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1948eedb9230000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-22 16:52:11</sys_updated_on>
+        <type>Angular ng-template</type>
+        <update_guid>058348056353d610c0352eb5e88697cc</update_guid>
+        <update_guid_history>058348056353d610c0352eb5e88697cc:1077173791</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Record deleted 23.01.2025 08:46:04">0f10d38587db1a104102cd0a0cbb3518</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 07:46:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sp_ng_template">sp_ng_template</sys_db_object>
+        <sys_id>2ead7d9cbd6c47a6a6dcf58d6ecd23c4</sys_id>
+        <sys_metadata>2123c4c18753d6104102cd0a0cbb359d</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>search-global-notes-creation</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sp_ng_template_2123c4c18753d6104102cd0a0cbb359d</sys_update_name>
+        <sys_update_version display_value="sp_ng_template_2123c4c18753d6104102cd0a0cbb359d">0d8348058753d6104102cd0a0cbb35cd</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-23 07:46:04</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new_set">
+    <item_option_new_set action="INSERT_OR_UPDATE">
+        <create_roles/>
+        <description/>
+        <display_title>false</display_title>
+        <internal_name>employee_information</internal_name>
+        <layout>2across</layout>
+        <name/>
+        <order>100</order>
+        <read_roles/>
+        <set_attributes/>
+        <sys_class_name>item_option_new_set</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-23 18:07:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>494ed559879f5a104102cd0a0cbb3588</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>Employee information</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>item_option_new_set_494ed559879f5a104102cd0a0cbb3588</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-01-23 18:57:09</sys_updated_on>
+        <title>Employee information</title>
+        <type>one_to_one</type>
+        <version>17</version>
+        <write_roles/>
+    </item_option_new_set>
+</record_update>
