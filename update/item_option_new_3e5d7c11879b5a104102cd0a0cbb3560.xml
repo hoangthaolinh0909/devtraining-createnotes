@@ -80,7 +80,7 @@
         <sys_created_on>2025-01-23 15:43:22</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>3e5d7c11879b5a104102cd0a0cbb3560</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Identification with the institution</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -88,7 +88,7 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>item_option_new_3e5d7c11879b5a104102cd0a0cbb3560</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-23 16:04:49</sys_updated_on>
+        <sys_updated_on>2025-01-24 07:23:12</sys_updated_on>
         <table/>
         <tooltip/>
         <topic_block/>
@@ -115,6 +115,58 @@
         <x_cls_clear_skye_i_super_slush_definition/>
     </item_option_new>
     <sys_translated_text action="delete_multiple" query="documentkey=3e5d7c11879b5a104102cd0a0cbb3560"/>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>3e5d7c11879b5a104102cd0a0cbb3560</documentkey>
+        <fieldname>conversational_label</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 07:23:12</sys_created_on>
+        <sys_id>86745c2187dbd610e27da8240cbb35ad</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 07:23:12</sys_updated_on>
+        <tablename>item_option_new</tablename>
+        <value/>
+    </sys_translated_text>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>3e5d7c11879b5a104102cd0a0cbb3560</documentkey>
+        <fieldname>help_text</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 07:23:12</sys_created_on>
+        <sys_id>bd745c2187dbd610e27da8240cbb35a9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 07:23:12</sys_updated_on>
+        <tablename>item_option_new</tablename>
+        <value/>
+    </sys_translated_text>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>3e5d7c11879b5a104102cd0a0cbb3560</documentkey>
+        <fieldname>instructions</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 07:23:12</sys_created_on>
+        <sys_id>ca745c2187dbd610e27da8240cbb35b6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 07:23:12</sys_updated_on>
+        <tablename>item_option_new</tablename>
+        <value/>
+    </sys_translated_text>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>3e5d7c11879b5a104102cd0a0cbb3560</documentkey>
+        <fieldname>rich_text</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 07:23:12</sys_created_on>
+        <sys_id>4a745c2187dbd610e27da8240cbb35b3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 07:23:12</sys_updated_on>
+        <tablename>item_option_new</tablename>
+        <value/>
+    </sys_translated_text>
     <fx_price action="delete_multiple" query="id=3e5d7c11879b5a104102cd0a0cbb3560"/>
     <fx_price action="INSERT_OR_UPDATE">
         <amount>0</amount>

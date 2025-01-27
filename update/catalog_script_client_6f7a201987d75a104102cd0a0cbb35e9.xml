@@ -15,7 +15,7 @@
         <global>true</global>
         <isolate_script>true</isolate_script>
         <messages/>
-        <name>Format Container Title</name>
+        <name>HVS Format Container Title</name>
         <order/>
         <published_ref/>
         <script><![CDATA[function onLoad() {
@@ -29,36 +29,44 @@
 		fieldName6 = "container_remarks_comments_START";
 
     setTimeout(function() {
-        var $fieldset = $("#" + fieldName1);
-        if ($fieldset) {
-            setTitleFormat($fieldset, '');
+
+        var fieldset1 = $(".type-multiple_choice");
+        if (fieldset1) {
+			for(var el=0; el < fieldset1.length; el++) {
+            fieldset1[el].style.fontSize = '1.25rem';
+			}
         }
 
-        $fieldset = $("#" + fieldName2);
-        if ($fieldset) {
-            setTitleFormat($fieldset, '');
+        var fieldset = $("#" + fieldName1);
+        if (fieldset) {
+            setTitleFormat(fieldset, '');
         }
 
-        $fieldset = $("#" + fieldName3);
-        if ($fieldset) {
-            $fieldset[0].parentElement.style.color = 'red';
-            $fieldset[0].parentElement.style.paddingTop = '5px';
-            $fieldset[0].parentElement.style.paddingLeft = '37px';
+        fieldset = $("#" + fieldName2);
+        if (fieldset) {
+            setTitleFormat(fieldset, '');
         }
 
-        $fieldset = $("#" + fieldName4);
-        if ($fieldset) {
-            setTitleFormat($fieldset, '15px');
+        fieldset = $("#" + fieldName3);
+        if (fieldset) {
+            fieldset[0].parentElement.style.color = 'black';
+            fieldset[0].parentElement.style.paddingTop = '5px';
+            fieldset[0].parentElement.style.paddingLeft = '37px';
         }
 
-        $fieldset = $("#" + fieldName5);
-        if ($fieldset) {
-            setTitleFormat($fieldset, '10px');
+        fieldset = $("#" + fieldName4);
+        if (fieldset) {
+            setTitleFormat(fieldset, '15px');
         }
 
-        $fieldset = $("#" + fieldName6);
-        if ($fieldset) {
-            setTitleFormat($fieldset, '10px');
+        fieldset = $("#" + fieldName5);
+        if (fieldset) {
+            setTitleFormat(fieldset, '10px');
+        }
+
+        fieldset = $("#" + fieldName6);
+        if (fieldset) {
+            setTitleFormat(fieldset, '10px');
         }
     });
 
@@ -70,7 +78,8 @@
         if (pixel!='') {
             refElem[0].parentElement.style.marginTop = pixel;
         }
-        refElem[0].parentElement.nextElementSibling.style.color = 'red';
+        refElem[0].parentElement.nextElementSibling.style.color = '#c31a1f';
+		refElem[0].parentElement.nextElementSibling.style.fontSize = '1.5rem';
         refElem[0].parentElement.nextElementSibling.style.paddingTop = '10px';
         refElem[0].parentElement.nextElementSibling.style.paddingLeft = '20px';
     }
@@ -82,8 +91,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6f7a201987d75a104102cd0a0cbb35e9</sys_id>
-        <sys_mod_count>44</sys_mod_count>
-        <sys_name>Format Container Title</sys_name>
+        <sys_mod_count>56</sys_mod_count>
+        <sys_name>HVS Format Container Title</sys_name>
         <sys_overrides display_value="">global</sys_overrides>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -91,7 +100,7 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>catalog_script_client_6f7a201987d75a104102cd0a0cbb35e9</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-23 17:57:43</sys_updated_on>
+        <sys_updated_on>2025-01-24 07:49:51</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>1</ui_type>

@@ -32,6 +32,10 @@
         var answer = JSON.parse(response.responseXML.documentElement.getAttribute("answer"));
         if (answer) {
             g_form.addInfoMessage(JSON.stringify(answer));
+			g_form.setValue("collaborator_job_company",answer.comp);
+			g_form.setValue("collaborator_job_department",answer.dept);
+			g_form.setValue("collaborator_job_title",answer.funct);
+			g_form.setValue("collaborator_job_commitment_date",answer.commitment_date);
         }
     }
 
@@ -43,7 +47,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>11c0295d879f5a104102cd0a0cbb35bd</sys_id>
-        <sys_mod_count>15</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>HVS Display Employee Information</sys_name>
         <sys_overrides display_value="">global</sys_overrides>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
@@ -52,7 +56,7 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>catalog_script_client_11c0295d879f5a104102cd0a0cbb35bd</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-23 18:57:09</sys_updated_on>
+        <sys_updated_on>2025-01-24 09:35:11</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>1</ui_type>

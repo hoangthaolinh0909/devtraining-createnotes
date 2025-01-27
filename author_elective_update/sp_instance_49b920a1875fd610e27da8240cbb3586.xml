@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>2</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="3">168720ed871fd610e27da8240cbb3522</sp_column>
+        <sp_widget display_value="HVS ATS Form">195116521b1b5550e63a41588b4bcb47</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 08:55:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>49b920a1875fd610e27da8240cbb3586</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_instance_49b920a1875fd610e27da8240cbb3586</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 08:55:59</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=49b920a1875fd610e27da8240cbb3586"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sp_instance_49b920a1875fd610e27da8240cbb3586</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>2</order><roles/><short_description/><size>md</size><sp_column display_value="3">168720ed871fd610e27da8240cbb3522</sp_column><sp_widget display_value="HVS ATS Form">195116521b1b5550e63a41588b4bcb47</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-01-24 08:55:59</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>49b920a1875fd610e27da8240cbb3586</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>sp_instance_49b920a1875fd610e27da8240cbb3586</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-01-24 08:55:59</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=49b920a1875fd610e27da8240cbb3586"/></record_update>]]></payload>
+        <payload_hash>-1887816633</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 08:56:00</sys_created_on>
+        <sys_id>89b924e1875fd610e27da8240cbb359a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194978679230000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 08:56:00</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>4db920a1be5fd6106e655945f52c4c88</update_guid>
+        <update_guid_history>4db920a1be5fd6106e655945f52c4c88:-1887816633</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Record deleted 24.01.2025 09:56:05">2eb964e1875fd610e27da8240cbb3549</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 08:56:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>3188138b73144cdb9067b2d20214dfd1</sys_id>
+        <sys_metadata>49b920a1875fd610e27da8240cbb3586</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sp_instance_49b920a1875fd610e27da8240cbb3586</sys_update_name>
+        <sys_update_version display_value="sp_instance_49b920a1875fd610e27da8240cbb3586">89b924e1875fd610e27da8240cbb359a</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 08:56:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

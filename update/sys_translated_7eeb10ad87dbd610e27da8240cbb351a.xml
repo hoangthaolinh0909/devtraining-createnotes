@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_translated">
+    <sys_translated action="INSERT_OR_UPDATE">
+        <element>text</element>
+        <id/>
+        <label>Satisfait-e</label>
+        <language>fr</language>
+        <name>question_choice</name>
+        <sys_class_name>sys_translated</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-24 07:55:45</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7eeb10ad87dbd610e27da8240cbb351a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Satisfait-e</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sys_translated_7eeb10ad87dbd610e27da8240cbb351a</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-24 07:56:42</sys_updated_on>
+        <value>Satisfied</value>
+    </sys_translated>
+</record_update>
