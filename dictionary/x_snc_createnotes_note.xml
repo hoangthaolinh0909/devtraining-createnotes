@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="a070ff78879f96104102cd0a0cbb354a" label="Entretien annuel collaborateur" max_length="40" name="x_snc_createnotes_note" type="collection">
-        <element default="javascript:getNextObjNumberPadded();" display="true" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="Number" max_length="40" name="number" type="string" use_dynamic_default="true"/>
-        <element default="Enter notes here" label="Note" max_length="4000" name="note" type="string"/>
-        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="1" label="test" max_length="800" name="test_ds" type="choice">
-            <choice/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Review date" mandatory="true" max_length="40" name="review_date" type="glide_date"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" choice="3" label="Review state" max_length="50" name="review_state" type="string">
+            <choice>
+                <element inactive_on_update="false" label="En cours" language="fr" sequence="8" value="inprogress"/>
+                <element inactive_on_update="false" label="Draft" sequence="1" value="draft"/>
+                <element inactive_on_update="false" label="Validé" language="fr" sequence="10" value="validated"/>
+                <element inactive_on_update="false" label="Brouillon" language="fr" sequence="7" value="draft"/>
+                <element inactive_on_update="false" label="Terminé incomplet" language="fr" sequence="12" value="incompleted"/>
+                <element inactive_on_update="false" label="On hold" sequence="2" value="onhold"/>
+                <element inactive_on_update="false" label="Validated" sequence="4" value="validated"/>
+                <element inactive_on_update="false" label="Completed" sequence="5" value="completed"/>
+                <element inactive_on_update="false" label="Closed incomplete" sequence="6" value="incompleted"/>
+                <element inactive_on_update="false" label="Terminé" language="fr" sequence="11" value="completed"/>
+                <element inactive_on_update="false" label="En attente" language="fr" sequence="9" value="onhold"/>
+                <element inactive_on_update="false" label="In progress" sequence="3" value="inprogress"/>
+            </choice>
         </element>
-        <element default="javascript:gs.getUserID();" dynamic_default_value="2fd8e97bef3221002841f7f775c0fbc1" label="User" max_length="32" name="user" reference="sys_user" type="reference" use_dynamic_default="true"/>
-        <element default="New Note" label="Title" max_length="100" name="title" type="string"/>
+        <element default="javascript:getNextObjNumberPadded();" display="true" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="Number" max_length="40" name="number" type="string" use_dynamic_default="true"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Job Commitment Date" max_length="40" name="job_commitment_date" type="glide_date"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Job Title" max_length="255" name="job_title" type="string"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Job Company" max_length="32" name="job_company" reference="core_company" type="reference"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Collaborator" max_length="32" name="collaborator" reference="sys_user" type="reference"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Job Department" max_length="32" name="job_department" reference="cmn_department" type="reference"/>
         <index name="index">
-            <element name="user"/>
+            <element name="collaborator"/>
+        </index>
+        <index name="index2">
+            <element name="job_company"/>
+        </index>
+        <index name="index3">
+            <element name="job_department"/>
         </index>
     </element>
 </database>

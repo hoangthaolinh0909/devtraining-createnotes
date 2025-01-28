@@ -5,48 +5,33 @@
 	/* widget controller */
 	var c = this;
 	// Use a position indicator to know which record to update
-	c.notePos = 0;
+	c.ReviewPos = 0;
 
 	c.selectItem = function(idx) {  
 		// Set the position indicator to the index value passed in on select
-		c.notePos = idx;
-		var id = c.data.notes[idx].sys_id;
-		$rootScope.noteID = id;
-		$rootScope.noteTable = 'x_snc_createnotes_note';
-		$rootScope.$emit('selectNote', id);
+		c.ReviewPos = idx;
+		var id = c.data.reviews[idx].sys_id;
+		$rootScope.reviewID = id;
+		$rootScope.reviewTable = 'x_snc_createnotes_note';
+		$rootScope.$emit('selectReview', id);
 	}
 	// Subscribe to event.  Set the new title and note values on the 
 	// c.data object
 	$rootScope.$on('updateTitle', function(event,data) { 
-		c.data.notes[c.notePos].title = data.title;
-		c.data.notes[c.notePos].note = data.note;
+		c.data.reviews[c.ReviewPos].job_title = data.job_title;
 	});
 
-	c.newNote = function() {
-		c.server.get({
-			action: 'newNote'
-		}).then(function(r) {
-			c.data.notes.unshift(r.data.newNote);
-			c.data.noteID = r.data.noteID;
-			$rootScope.noteID = c.data.noteID;
-			$rootScope.$emit('selectNote', c.data.noteID);
-		});
-	}
-
 	$rootScope.$on('deleteNote', function(event,data) {
-		c.data.notes.splice(c.notePos, 1);
+		c.data.notes.splice(c.ReviewPos, 1);
 	});
 
 	// Record removed from data object on the client and passed to server
 	c.snNoteUpdate = function(obj,sysID){
 
 		for (var i=0;i<c.data.notes.length;i++){
-			if(c.data.notes[i].sys_id == obj.data.sys_id){
-				if(obj.data.record.note){
-					c.data.notes[i].note = obj.data.record.note.display_value;
-				}
-				if(obj.data.record.title){
-					c.data.notes[i].title = obj.data.record.title.display_value;
+			if(c.data.reviews[i].sys_id == obj.data.sys_id){
+				if(obj.data.record.review_state){
+					c.data.reviews[i].review_state = obj.data.record.review_state.display_value;
 				}
 				c.server.update();
 
@@ -54,35 +39,27 @@
 		}
 	}
 
-	// Record removed from data object on the server and passed back to client
-	c.snNoteDelete = function(sysID){
-		spModal.confirm("Are you sure you want to delete this Note record?").then(function(confirmed){
-			if(confirmed){
-				c.server.get({
-					action: 'snDeleteNote',
-					noteID: sysID
-
-				}).then(function(r){
-					c.data.notes = r.data.notes;
-				});
-			}
-		})
-	}
-
 	spUtil.recordWatch($scope, "x_snc_createnotes_note", "numberANYTHING", function(r) {
-		if(name.data.operation == "insert"){
+//		spUtil.addInfoMessage(JSON.stringify((r.data)));
+		c.server.refresh();
+		/*
+		if(r.data.operation == "insert"){
 			c.server.refresh();
 		}
+			
 		// Calls a Client Script function to do the update and pass the updated data object
 		// to the server.
 		if(r.data.operation == "update"){
 			c.snNoteUpdate(r, r.data.sys_id);
 		}
+		
+
 		// Calls a Client Script function which deletes a record on the server and passes
 		// the updated data object back to the client.
 		if(r.data.operation == "delete"){
 			c.snNoteDelete(r.data.sys_id);
 		}
+		*/
 	});
 
 }
@@ -91,6 +68,129 @@
         <css>h3.panel-title {
   font-size:20px;
   padding-top:5px;
+}
+
+.panel {
+  //box-shadow: 0 0 1rem #6f6363;
+}
+
+$secondary-color: #000000;
+//==Backgrounds
+$background-primary: #ffffff; //--now-color_background--primary
+$background-secondary: #f8f6f6; //--now-color_background--secondary
+$background-tertiary: #F5F0F1; //--now-color_background--tertiary
+
+//==borders
+$border-primary: #8790A1; //--now-color_border--primary
+$border-secondary: #BEACB2; //--now-color_border--secondary
+$border-tertiary: #E2DADD; //--now-color_border--tertiary
+
+$brand-primary: #c31a1f; //--now-color--primary-1
+$brand-danger: #E42338; //--now-color_alert--critical-2
+$brand-warning: #F0E000; //--now-color_alert--warning-2
+$brand-moderate: #8B6BFF; //--now-color_alert--moderate-2 NEW
+$brand-low: #9698A4; //--now-color_alert--low-2 NEW
+$brand-success: #51ae00; //--now-color_alert--positive-2
+$brand-info: #38aaf4; //--now-color_alert--info-2
+
+.draft {
+  color:#6B7280 !important;
+}
+
+.inprogress {
+  color:#F59E0B !important;
+}
+
+.onhold {
+  color:#EF4444 !important;
+}
+
+.validated {
+  color:#5cb85c !important;
+}
+
+.completed {
+  color:#c31a1f !important;
+}
+
+.incompleted {
+  color:#181B20 !important;
+}
+
+
+.card{
+  border-radius: 10px;
+  padding: 10px 10px 10px 20px;
+  box-shadow: 0 0 0rem 1px #ddd;
+  margin: 0px 15px 10px 15px;
+  border-right: 0.5rem solid $brand-primary;
+
+  &amp;:hover{
+    background-color: rgb(231,229,229) !important;
+    //box-shadow: 0 0 1rem #a29393;
+  }
+}
+
+.tag{  
+  background-color: $brand-color;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.avatar-container {
+  margin-right:5px;
+}
+
+.avatar-display {
+  display: flex;
+  align-items: center;
+}
+
+.heading{
+  margin-top: 1.1rem;
+  margin-bottom: 1.1rem;
+  color:$text-color;
+}
+
+.description{
+  color: $text-muted;
+}
+
+.button{
+  color: #ffffff;
+  background-color: #ffffff;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid $secondary-color;
+  box-shadow: inset 0 0 0 0 #ffffff;
+  transition: ease-out 0.4s;
+  cursor: pointer;
+
+  &amp;:hover{
+    background-color: #ffffff !important;
+    color: #000000;
+    box-shadow: inset 400px 0 0 0 #ffffff;
+  }
+}
+.w-100{
+  width: 100%;
+}
+
+.bg{
+  height: 20rem;
+  background: #ffffff;
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.position-absolute{
+  position: absolute;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -102,25 +202,24 @@
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
         <name>Yearly Review List</name>
-        <option_schema>[{"hint":"Specify a title for the Notes List widget","name":"title","section":"other","default_value":"Notes","label":"Title","type":"string"},{"hint":"Select the maximum number of records to display","name":"maximum_records_to_display","section":"other","default_value":"5","label":"Maximum records to display","type":"choice","choices":[{"label":"2","value":"2"},{"label":"3","value":"3"},{"label":"5","value":"5"},{"label":"7","value":"7"},{"label":"11","value":"11"},{"label":"13","value":"13"},{"label":"17","value":"17"}]}]</option_schema>
+        <option_schema>[{"hint":"#c31a1f","name":"feature_color","section":"Behavior","default_value":"#c31a1f","label":"Feature Color","type":"string"},{"name":"heading","section":"Data","default_value":"Heading","label":"Heading","type":"string"},{"name":"description","section":"Data","default_value":"Description","label":"Description","type":"string"},{"hint":"https://www.google.com","name":"redirect_url","section":"Data","default_value":"","label":"Redirect URL","type":"string"},{"name":"background_image","section":"Data","default_value":"","label":"Background Image","type":"string"},{"hint":"#FFFFFF","name":"background_color","section":"Behavior","default_value":"#FFFFFF","label":"Background Color","type":"string"},{"name":"feature","section":"Data","label":"Feature","type":"string"}]</option_schema>
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
 
-	data.notes = [];
-	var noteGR = new GlideRecord('x_snc_createnotes_note');
-	noteGR.addQuery('user', gs.getUser().getID());
-	noteGR.orderByDesc('sys_created_on');
-	noteGR.setLimit(options.maximum_records_to_display);
-	noteGR.query();
-	while (noteGR.next()) {
-		var noteObj = {};
+	data.reviews = [];
+	var collabReviewGR = new GlideRecord('x_snc_createnotes_note');
+	collabReviewGR.orderByDesc('sys_created_on');
+	//collabReviewGR.setLimit(options.maximum_records_to_display);
+	collabReviewGR.query();
+	while (collabReviewGR.next()) {
+		var CollabReviewObj = {};
 
-		$sp.getRecordDisplayValues(noteObj, noteGR, 'number,title,sys_id');
-
-		noteObj.note = noteGR.getValue('note').slice(0,20);
-
-		data.notes.push(noteObj);
+		$sp.getRecordDisplayValues(CollabReviewObj, collabReviewGR, 'collaborator,review_date,job_title, job_department, review_date ,sys_id');
+		CollabReviewObj.image=getAvatarPath(collabReviewGR.getValue(("collaborator")));
+		CollabReviewObj.borderright = collabReviewGR.getValue("review_state");
+		data.reviews.push(CollabReviewObj);
+		console.log(data.reviews);
 	}
 
 	if (input) {
@@ -142,6 +241,23 @@
 
 		}
 	}
+
+	function getAvatarPath(userID) {
+		console.log("userID: " + userID);
+		var avatarPath = '';
+		var grUser = new GlideRecord("sys_user");
+		grUser.addEncodedQuery("sys_id=" + userID );
+		grUser.setLimit(1);
+		grUser.query();
+		if (grUser.hasNext()) {
+			grUser.next();
+			var avatarRec = GlideAvatarFinder.getAvatarPath(grUser.getValue("sys_id")); // pass sys_id of user
+			avatarPath = (avatarRec != null && avatarRec) ? encodeURI(avatarRec.toString().replace("?t=small", "")) : '';
+		}
+
+		return avatarPath;
+	}
+
 }
 )();]]></script>
         <servicenow>false</servicenow>
@@ -150,7 +266,7 @@
         <sys_created_on>2019-05-30 18:13:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>06948fa8db3133000613a08a4896194c</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>214</sys_mod_count>
         <sys_name>Yearly Review List</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -158,31 +274,38 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_06948fa8db3133000613a08a4896194c</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-25 16:20:17</sys_updated_on>
+        <sys_updated_on>2025-01-27 16:29:06</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
   <div class="panel-heading clearfix">
     <h3 class="panel-title pull-left">
-      {{::c.options.title}}
+      ${hvs_yar_collaborators_list}
     </h3>
     <button class="btn btn-default pull-right" ng-click="c.newNote()"> 
       <span class="glyphicon glyphicon-plus"></span> 
     </button>
   </div>
   <div class="panel-body"> 
-    <input placeholder="Filter" class="form-control" ng-model="noteFilter" /> 
+    <input placeholder="Filter" class="form-control" ng-model="reviewFilter" /> 
   </div>
 
-  <div class="list-group">
-    <a class="list-group-item" ng-click="c.selectItem($index)" ng-repeat="note in data.notes | filter: noteFilter">
-      <h4 class="list-group-item-heading">
-        {{note.title}}
+  <div class="card {{review.borderright}} panel-body"  ng-click="c.selectItem($index)" ng-style="{'background': c.options.background_color, 'border-right': '1rem solid'}" ng-repeat="review in data.reviews | filter: reviewFilter">
+    <span ng-if="::c.options.feature" class="tag" ng-style="{'background-color': c.options.feature_color}" ng-class="{'position-absolute': c.options.background_image && c.options.background_image != ''}">{{::c.options.feature}}</span>
+    <div class="avatar-display {{review.borderright}}">
+      <div ng-if="review.image" class="avatar-container avatar-large ng-isolate-scope" ng-click="c.selectItem($index)" ng-style="{'background-image': 'url(' + review.image + ')' }"></div>
+      <h4 class="heading {{review.borderright}}">
+        {{review.collaborator}}
       </h4>
-      <p class="list-group-item-text">
-        {{note.note}}
-      </p>
-    </a>
+    </div>
+    <div>
+      <p class="description">
+        {{review.job_title}}<br/>
+        {{review.job_department}}
+      </p>    
+    </div>
   </div>
-</div>]]></template>
+
+</div>
+]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>06948fa8db3133000613a08a4896194c</id>

@@ -38,9 +38,9 @@
 		}
 	});
 
-	$rootScope.$on('selectNote', function(event,name) {
-			c.data.table = $rootScope.noteTable;
-			c.data.sys_id = $rootScope.noteID;
+	$rootScope.$on('selectReview', function(event,name) {
+			c.data.table = $rootScope.reviewTable;
+			c.data.sys_id = $rootScope.reviewID;
 		$scope.server.update({
 		});
 	});
@@ -455,6 +455,7 @@
         <roles/>
         <script><![CDATA[// form functionality - URL parameter driven
 (function($sp, input, data, options, gs) {
+			//if (input) {
 		/* "use strict"; -linter issues */
 		// populate the 'data' variable
 		data.attachmentUploadSuccessMsg = gs.getMessage("Attachment upload was successful");
@@ -489,15 +490,23 @@
 				data.isNewRecord = true;
 			if (input.isPopup === true)
 				isPopup = true;
-		} else {
+		} else {	
 			data.table = options.table || $sp.getParameter("t") || $sp.getParameter("table") || $sp.getParameter("sl_table");
 			data.sys_id = options.sys_id || $sp.getParameter("sys_id") || $sp.getParameter("sl_sys_id");
 			if (!data.sys_id && options.sys_id_required != "true")
 				data.sys_id = "-1";
 			data.view = options.view || $sp.getParameter("view") || $sp.getParameter("v") || 'default view'; // no default
 		}
-
-
+/*
+	console.log(">>>****************************");
+	console.log('data.table: ' + data.table);
+	console.log('data sys_id: ' + data.sys_id);
+	console.log(hasRecordAccess);
+	console.log("data.query: " + data.query);
+	console.log("data.view: " + data.view);
+	console.log("****************************<<<");
+	*/
+	
 		if (isPopup && gs.getProperty("glide.service_portal.reference.use_sys_popup_view", "false") == "true") {
 			options.hideRelatedLists = true;
 			options.disableUIActions = "true";
@@ -539,13 +548,6 @@
 		data.canWrite = rec.canWrite();
 
 		var hasRecordAccess = data.sys_id == "-1" ? rec.canCreate() : data.canWrite;
-		console.log(">>>****************************");
-		console.log('data.table: ' + data.table);
-		console.log('data sys_id: ' + data.sys_id);
-		console.log(hasRecordAccess);
-		console.log("data.query: " + data.query);
-		console.log("data.view: " + data.view);
-		console.log("****************************<<<");	
 	
 		data.canAttach = !options.omitAttachmentButton && hasRecordAccess && gs.hasRole(gs.getProperty('glide.attachment.role'));// && !rec.getED().getBooleanAttribute("no_attachment");
 		data.f = $sp.getForm(data.table, data.sys_id);//, data.query, data.view, isPopup);
@@ -559,7 +561,7 @@
 		}
 
 		// Activity formatter is hardcoded to set specific options
-		/*
+		
 	for (var f in data.f._formatters) {
 		var fm = data.f._formatters[f];
 		if (fm.formatter == "activity.xml") {
@@ -582,9 +584,7 @@
 		} else
 			fm.widgetInstance = $sp.getWidget(fm.widget, data);
 	}
-	*/
-
-//}
+	
  
 })($sp, input, data, options, gs);]]></script>
         <servicenow>false</servicenow>
@@ -593,7 +593,7 @@
         <sys_created_on>2025-01-24 08:57:01</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>58f9a4e1875fd610e27da8240cbb3549</sys_id>
-        <sys_mod_count>109</sys_mod_count>
+        <sys_mod_count>133</sys_mod_count>
         <sys_name>Yearly Review Form</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -601,15 +601,8 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_58f9a4e1875fd610e27da8240cbb3549</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-25 16:31:49</sys_updated_on>
-        <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
-  <div class="panel-body wrapper-lg text-center">
-    <span ng-if="!data.tableUnsupported">${Record not found} OK 1</span>  
-    <span ng-if="data.tableUnsupported">${Form view not supported for requested table} OK 2</span>
-  </div>
-</div>
-
-<div ng-if="!data.isValid && data.emptyStateTemplate" class="panel-shift">
+        <sys_updated_on>2025-01-27 15:48:58</sys_updated_on>
+        <template><![CDATA[<div ng-if="!data.isValid && data.emptyStateTemplate" class="panel-shift">
   <div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"></div>
 </div>
 
@@ -634,7 +627,6 @@
     </div>
   </div>
   <div ng-show="isPageReady" class="panel panel-default" ng-if="data.f._view.length || !data.hideRelatedLists" >
-    ok
     <div class="panel-heading" ng-if="data.f.title.length" sp-context-menu="getUIActionContextMenu(event)">
       	<span class="dropdown m-r-xs" ng-if="(data.isAdmin || getUIActions('context').length > 0) && options.omitHeaderOptions != 'true'">
             <button aria-label="{{data.f.label}} ${Form menu}" title="{{data.f.label}} ${Form menu}" class="btn btn-form-menu dropdown-toggle glyphicon glyphicon-menu-hamburger" style="line-height: 1.4em" id="adminMenu" data-toggle="dropdown" data-placement="bottom" aria-haspopup="true" aria-expanded="false" autofocus="true"></button>
@@ -704,6 +696,7 @@
       </div>
 			
       <!-- related lists -->
+      <!--
       <div ng-if="!data.hideRelatedLists">
         <label class="h4" role="heading" aria-level="{{embeddedInModal ? '2' : '3'}}" style="margin: 0">${Related Lists}</label>
         <div style="margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid #f5f5f5;">
@@ -720,6 +713,7 @@
           </nav>
         </div>
       </div>
+    	-->
       
     </div>
 

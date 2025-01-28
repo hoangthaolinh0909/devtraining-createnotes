@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="test_ds" table="x_snc_createnotes_note">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="review_date" table="x_snc_createnotes_note">
         <active>true</active>
         <array>false</array>
         <attributes/>
@@ -10,10 +10,10 @@
 	return '';  // return the calculated value&#13;
 &#13;
 })(current);</calculation>
-        <choice>1</choice>
+        <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label>test</column_label>
+        <column_label>Review date</column_label>
         <comments/>
         <create_roles/>
         <default_value/>
@@ -26,15 +26,15 @@
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>test_ds</element>
+        <element>review_date</element>
         <element_reference>false</element_reference>
         <foreign_database/>
         <formula/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="Choice">choice</internal_type>
-        <mandatory>false</mandatory>
-        <max_length>800</max_length>
+        <internal_type display_value="">glide_date</internal_type>
+        <mandatory>true</mandatory>
+        <max_length>40</max_length>
         <name>x_snc_createnotes_note</name>
         <next_element/>
         <primary>false</primary>
@@ -51,16 +51,16 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>h40009222</sys_created_by>
-        <sys_created_on>2025-01-23 10:55:49</sys_created_on>
+        <sys_created_on>2025-01-27 08:43:23</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_name>test</sys_name>
+        <sys_name>Review date</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
-        <sys_update_name>sys_dictionary_x_snc_createnotes_note_test_ds</sys_update_name>
+        <sys_update_name>sys_dictionary_x_snc_createnotes_note_review_date</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-23 11:06:08</sys_updated_on>
+        <sys_updated_on>2025-01-27 09:19:43</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
