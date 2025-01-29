@@ -6,7 +6,7 @@
 	var c = this;
 	// Use a position indicator to know which record to update
 	c.ReviewPos = 0;
-
+	
 	c.selectItem = function(idx) {  
 		// Set the position indicator to the index value passed in on select
 		c.ReviewPos = idx;
@@ -62,6 +62,7 @@
 		*/
 	});
 
+
 }
 ]]></client_script>
         <controller_as>c</controller_as>
@@ -71,7 +72,7 @@
 }
 
 .panel {
-  //box-shadow: 0 0 1rem #6f6363;
+  box-shadow: 0 0 1rem #6f6363;
 }
 
 $secondary-color: #000000;
@@ -191,7 +192,199 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
 
 .position-absolute{
   position: absolute;
-}</css>
+}
+
+.form-group {
+  margin-bottom:.25rem;
+}
+
+.layout {
+	display:flex;
+  flex-direction: row;
+	padding-left: 30px;
+  padding-right: 20px;
+}
+
+/*********************************** radio butt0n ***********************************/
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+$primary-color: #00005c; // Change color here. C'mon, try it! 
+$text-color: mix(#000, $brand-primary, 64%);
+
+body {
+  color: $text-color;
+  font-size: calc(1em + 1.25vw);
+  background-color: mix(#fff, $brand-primary, 90%);
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1 0 auto;
+  min-height: calc(-515.49px + 100vh);
+}
+
+.sp-form-container {
+  margin-bottom : 1em;
+}
+
+.radio {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.radio label {
+  display: flex;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.175em;
+  /* Accessible outline */
+  /* Remove comment to use */ 
+  /*
+  &amp;:focus-within {
+  outline: .125em solid $primary-color;
+}
+  */
+
+  input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+    &amp;:checked + span {
+      background-color: mix(#fff, $brand-primary, 84%);
+      &amp;:before {
+        box-shadow: inset 0 0 0 0.4375em $brand-primary;
+      }
+    }
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em; // or something higher...
+    transition: 0.25s ease;
+    &amp;:hover {
+      background-color: mix(#fff, $brand-primary, 84%);
+    }
+    &amp;:before {
+      display: flex;
+      flex-shrink: 0;
+      content: "";
+      background-color: #fff;
+      width: 1.25em;
+      height: 1.25em;
+      border-radius: 50%;
+      margin-right: 0.375em;
+      transition: 0.25s ease;
+      box-shadow: inset 0 0 0 0.125em $brand-primary;
+    }
+  }
+}
+
+h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  line-height: 1.1;
+  color: inherit;
+}
+
+/*********************************** input ***********************************/
+:root {
+  --input-focus-h: 245;
+  --input-focus-s: 100%;
+  --input-focus-l: 42%;
+}
+
+.input {
+  width:100%;
+  font-size: 14px;
+  // Capitalized to prevent Sass
+  // thinking it's the Sass max()
+  font-size: Max(14px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 1px solid $brand-primary;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 4px;
+  transition: 180ms box-shadow ease-in-out;
+}
+
+.input:focus {
+  border-color: hsl(
+    var(--input-focus-h),
+    var(--input-focus-s),
+    var(--input-focus-l)
+  );
+  /*
+  box-shadow: 0 0 0 1px
+    hsla(
+      var(--input-focus-h),
+      var(--input-focus-s),
+      calc(var(--input-focus-l) + 40%),
+      0.8
+    );
+  */
+}
+
+.input:not(textarea) {
+  line-height: 1;
+  height: 2.25rem;
+}
+
+[id^="textarea_ea_"] {
+  margin-bottom:15px;
+}
+
+input[type="file"] {
+  font-size: 0.9em;
+  padding-top: 0.35rem;
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+.input[readonly] {
+  border-style: dotted;
+  cursor: not-allowed;
+  color: #777;
+}
+
+.input[disabled] {
+  --input-border: #ccc;
+
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.input + label {
+  margin-top: 2rem;
+}
+
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -207,6 +400,49 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <roles/>
         <script><![CDATA[(function() {
 
+	/************************************* Collaborator Satisfaction ************************************/
+	data.collaborator_work_environment = getOptionItems("collaborator_work_environment");
+	data.collaborator_workload = getOptionItems("collaborator_workload");
+	data.collaborator_work_atmosphere_climate = getOptionItems("collaborator_work_atmosphere_climate");
+	data.collaborator_team_spirit = getOptionItems("collaborator_team_spirit");
+	data.collaborator_relationship_manager = getOptionItems("collaborator_relationship_manager");
+	data.collaborator_general_motivation = getOptionItems("collaborator_general_motivation");
+	
+	/**************************************** Manager Satisfaction **************************************/
+	data.manager_effectiveness_and_efficiency = getOptionItems("manager_effectiveness_and_efficiency");
+	data.manager_customer_satisfaction = getOptionItems("manager_customer_satisfaction");
+	data.manager_cooperation_helpfulness = getOptionItems("manager_cooperation_helpfulness");
+	data.manager_identification_institution = getOptionItems("manager_identification_institution");
+	data.manager_vision = getOptionItems("manager_vision");
+	data.manager_solution_oriented_proactive = getOptionItems("manager_solution_oriented_proactive");
+	data.manager_leadership_na = getOptionItems("manager_leadership_na");
+	data.other_manager_evaluation_2 = getOptionItems("other_manager_evaluation_2");
+	data.other_manager_evaluation_1 = getOptionItems("other_manager_evaluation_1");
+	data.objective_measure = getOptionItems("review_objective_or_meausre");
+	data.training_and_professional_development = getOptionItems("training_and_professional_development");
+	data.remarks_comments = getOptionItems("remarks_comments");
+	data.collaborator_satisfaction = getOptionItems("collaborator_satisfaction");
+	data.manager_evaluation = getOptionItems("manager_evaluation");
+
+	function getOptionItems(field) {
+		var inData = [];
+		var language = gs.getSession().getLanguage();
+		var choices = GlideChoiceList.getChoiceList("x_snc_createnotes_note", field);
+		var obj={};
+		var grForLabels = new GlideRecord("x_snc_createnotes_note");
+		
+		inData.push(grForLabels.getElement(field).getLabelLang(language));
+		
+		for (i = 0; i < choices.getSize(); i++){
+			obj.value = choices.getChoice(i).getValue();
+			obj.label = choices.getChoice(i).getLabel();
+			inData.push(obj);
+			obj={};
+		}
+		return inData;
+	}
+	/****************************************************************************************************/
+
 	data.reviews = [];
 	var collabReviewGR = new GlideRecord('x_snc_createnotes_note');
 	collabReviewGR.orderByDesc('sys_created_on');
@@ -219,8 +455,8 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
 		CollabReviewObj.image=getAvatarPath(collabReviewGR.getValue(("collaborator")));
 		CollabReviewObj.borderright = collabReviewGR.getValue("review_state");
 		data.reviews.push(CollabReviewObj);
-		console.log(data.reviews);
 	}
+	console.log(data.reviews);
 
 	if (input) {
 		if (input.action == 'newNote') {
@@ -243,7 +479,6 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
 	}
 
 	function getAvatarPath(userID) {
-		console.log("userID: " + userID);
 		var avatarPath = '';
 		var grUser = new GlideRecord("sys_user");
 		grUser.addEncodedQuery("sys_id=" + userID );
@@ -266,7 +501,7 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <sys_created_on>2019-05-30 18:13:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>06948fa8db3133000613a08a4896194c</sys_id>
-        <sys_mod_count>214</sys_mod_count>
+        <sys_mod_count>522</sys_mod_count>
         <sys_name>Yearly Review List</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -274,7 +509,7 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_06948fa8db3133000613a08a4896194c</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-27 16:29:06</sys_updated_on>
+        <sys_updated_on>2025-01-29 19:13:37</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
   <div class="panel-heading clearfix">
     <h3 class="panel-title pull-left">
@@ -303,8 +538,349 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
       </p>    
     </div>
   </div>
-
 </div>
+
+<div class="main">
+
+  <!-- ****************************** Manager Satisfaction ****************************** -->
+  <div class="sp-form-container ng-scope" aria-hidden="false">
+    <span class="container-caption form-container-caption ng-scope" style="width: 100%; color: white; background: rgb(195, 26, 31); padding: 5px;">
+      <span class="h4 ng-binding" role="heading" aria-level="3" id="container_employee_satisfaction_START" style="font-size: 2rem;">{{c.data.collaborator_satisfaction[0]}}</span>
+    </span>
+
+    <!-- collaborator_work_environment -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.collaborator_work_environment[0]}}
+            </span>
+          </label>        
+        </div>
+
+        <div class="radio">
+          <label ng-if="::work_environment.value" ng-repeat="work_environment in data.collaborator_work_environment">
+            <input type="radio" name="collaborator_work_environment">
+            <span>{{work_environment.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- collaborator_workload -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.collaborator_workload[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::collaborator_workload.value" ng-repeat="collaborator_workload in data.collaborator_workload">
+            <input type="radio" name="collaborator_workload">
+            <span>{{collaborator_workload.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- collaborator_work_atmosphere_climate -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.collaborator_work_atmosphere_climate[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::collaborator_work_atmosphere_climate.value" ng-repeat="collaborator_work_atmosphere_climate in data.collaborator_work_atmosphere_climate">
+            <input type="radio" name="collaborator_work_atmosphere_climate">
+            <span>{{collaborator_work_atmosphere_climate.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- collaborator_team_spirit -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.collaborator_team_spirit[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::collaborator_team_spirit.value" ng-repeat="collaborator_team_spirit in data.collaborator_team_spirit">
+            <input type="radio" name="collaborator_team_spirit">
+            <span>{{collaborator_team_spirit.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- collaborator_relationship_manager -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.collaborator_relationship_manager[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::collaborator_relationship_manager.value" ng-repeat="collaborator_relationship_manager in data.collaborator_relationship_manager">
+            <input type="radio" name="collaborator_relationship_manager">
+            <span>{{collaborator_relationship_manager.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- collaborator_general_motivation -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.collaborator_general_motivation[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::collaborator_general_motivation.value" ng-repeat="collaborator_general_motivation in data.collaborator_general_motivation">
+            <input type="radio" name="collaborator_general_motivation">
+            <span>{{collaborator_general_motivation.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ****************************** Manager Satisfaction ****************************** -->
+  <div class="sp-form-container ng-scope" aria-hidden="false">
+    <span class="container-caption form-container-caption ng-scope" style="width: 100%; color: white; background: rgb(195, 26, 31); padding: 5px;">
+      <span class="h4 ng-binding" role="heading" aria-level="3" id="container_employee_satisfaction_START" style="font-size: 2rem;">{{c.data.manager_evaluation[0]}}</span>
+    </span>
+
+    <!-- manager_effectiveness_and_efficiency -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_effectiveness_and_efficiency[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_effectiveness_and_efficiency.value" ng-repeat="manager_effectiveness_and_efficiency in data.manager_effectiveness_and_efficiency">
+            <input type="radio" name="manager_effectiveness_and_efficiency">
+            <span>{{manager_effectiveness_and_efficiency.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- manager_customer_satisfaction -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_customer_satisfaction[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_customer_satisfaction.value" ng-repeat="manager_customer_satisfaction in data.manager_customer_satisfaction">
+            <input type="radio" name="manager_customer_satisfaction">
+            <span>{{manager_customer_satisfaction.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- manager_cooperation_helpfulness -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_cooperation_helpfulness[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_cooperation_helpfulness.value" ng-repeat="manager_cooperation_helpfulness in data.manager_cooperation_helpfulness">
+            <input type="radio" name="manager_cooperation_helpfulness">
+            <span>{{manager_cooperation_helpfulness.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- manager_identification_institution -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_identification_institution[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_identification_institution.value" ng-repeat="manager_identification_institution in data.manager_identification_institution">
+            <input type="radio" name="manager_identification_institution">
+            <span>{{manager_identification_institution.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- manager_vision -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_vision[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_vision.value" ng-repeat="manager_vision in data.manager_vision">
+            <input type="radio" name="collaborator_relationship_manager">
+            <span>{{manager_vision.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- manager_solution_oriented_proactive -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_solution_oriented_proactive[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_solution_oriented_proactive.value" ng-repeat="manager_solution_oriented_proactive in data.manager_solution_oriented_proactive">
+            <input type="radio" name="collaborator_general_motivation">
+            <span>{{manager_solution_oriented_proactive.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- manager_leadership_na -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <div style="width:50%;">
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.manager_leadership_na[0]}}
+            </span>
+          </label>
+        </div>
+        <div class="radio">
+          <label ng-if="::manager_leadership_na.value" ng-repeat="manager_leadership_na in data.manager_leadership_na">
+            <input type="radio" name="collaborator_general_motivation">
+            <span>{{manager_leadership_na.label}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Others Manager Evaluation -->
+    <div class="row" style="color: rgb(195, 26, 31);padding-top: 10px;">
+      <div class="layout">
+        <div colspan=2>
+          <label class="field-label field-label-question">
+            <span class="sp-field-label-padding ng-binding" data-placement="right" data-toggle="tooltip" data-original-title="" title="">
+              {{c.data.other_manager_evaluation_1[0]}}
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="layout">
+        <textarea class="input" id="textarea"></textarea>
+      </div>
+      <div class="radio layout">
+        <label ng-if="::other_manager_evaluation_1.value" ng-repeat="other_manager_evaluation_1 in data.other_manager_evaluation_1">
+          <input type="radio" name="other_manager_evaluation_1">
+          <span>{{other_manager_evaluation_1.label}}</span>
+        </label>
+      </div>
+      <div class="layout">
+        <textarea class="input" id="textarea"></textarea>
+      </div>
+      <div class="radio layout">
+        <label ng-if="::other_manager_evaluation_2.value" ng-repeat="other_manager_evaluation_2 in data.other_manager_evaluation_2">
+          <input type="radio" name="other_manager_evaluation_2">
+          <span>{{other_manager_evaluation_2.label}}</span>
+        </label>
+      </div>    </div>
+
+  </div>
+
+  <!-- ****************************** Objective or measure ****************************** -->
+   <div class="sp-form-container ng-scope" aria-hidden="false">
+    <span class="container-caption form-container-caption ng-scope" style="width: 100%; color: white; background: rgb(195, 26, 31); padding: 5px;">
+      <span class="h4 ng-binding" role="heading" aria-level="3" id="container_employee_satisfaction_START" style="font-size: 2rem;">{{c.data.objective_measure[0]}}</span>
+    </span>
+
+    <!-- textarea_review_objective_or_meausre -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <textarea class="input" id="textarea_ea_review_objective_or_meausre"></textarea>
+      </div>    
+    </div>  
+  </div>
+
+  <!-- ****************************** Desire for training and professional development ****************************** -->
+  <div class="sp-form-container ng-scope" aria-hidden="false">
+    <span class="container-caption form-container-caption ng-scope" style="width: 100%; color: white; background: rgb(195, 26, 31); padding: 5px;">
+      <span class="h4 ng-binding" role="heading" aria-level="3" id="container_employee_satisfaction_START" style="font-size: 2rem;">{{c.data.training_and_professional_development[0]}}</span>
+    </span>
+
+    <!-- textarea_training_and_professional_development -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <textarea class="input" id="textarea_ea_training_and_professional_development"></textarea>
+      </div>    
+    </div>  
+  </div>
+
+  <!-- ****************************** Remarks / commentse ****************************** -->
+  <div class="sp-form-container ng-scope" aria-hidden="false">
+    <span class="container-caption form-container-caption ng-scope" style="width: 100%; color: white; background: rgb(195, 26, 31); padding: 5px;">
+      <span class="h4 ng-binding" role="heading" aria-level="3" id="container_employee_satisfaction_START" style="font-size: 2rem;">{{c.data.remarks_comments[0]}}</span>
+    </span>
+
+    <!-- textarea_remarks_comments -->
+    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+      <div class="layout">
+        <textarea class="input" id="textarea_ea_remarks_comments"></textarea>
+      </div>
+    </div>   
+  </div>
+
+  <!--
+review_objective_or_meausre
+-->
 ]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

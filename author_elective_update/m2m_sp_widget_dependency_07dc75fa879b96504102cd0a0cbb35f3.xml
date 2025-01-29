@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="DELETE">
+        <sp_dependency display_value="HVS JS External ">6dbcbd3e879b96504102cd0a0cbb35b2</sp_dependency>
+        <sp_widget display_value="Yearly Review List">06948fa8db3133000613a08a4896194c</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:11:42</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>07dc75fa879b96504102cd0a0cbb35f3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HVS JS External .Yearly Review List</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_07dc75fa879b96504102cd0a0cbb35f3</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:11:42</sys_updated_on>
+    </m2m_sp_widget_dependency>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>m2m_sp_widget_dependency_07dc75fa879b96504102cd0a0cbb35f3</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency"><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="HVS JS External ">6dbcbd3e879b96504102cd0a0cbb35b2</sp_dependency><sp_widget display_value="Yearly Review List">06948fa8db3133000613a08a4896194c</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-01-28 12:11:42</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>07dc75fa879b96504102cd0a0cbb35f3</sys_id><sys_mod_count>0</sys_mod_count><sys_name>HVS JS External .Yearly Review List</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>m2m_sp_widget_dependency_07dc75fa879b96504102cd0a0cbb35f3</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-01-28 12:11:42</sys_updated_on></m2m_sp_widget_dependency></record_update>]]></payload>
+        <payload_hash>-611250846</payload_hash>
+        <record_name>HVS JS External .Yearly Review List</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:11:42</sys_created_on>
+        <sys_id>4bdc357e879b96504102cd0a0cbb359e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194acd317730000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:11:42</sys_updated_on>
+        <type>Widget Dependency</type>
+        <update_guid>0bdc357ec79b9650778e8dd4a8aae79d</update_guid>
+        <update_guid_history>0bdc357ec79b9650778e8dd4a8aae79d:-611250846</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Record deleted 28.01.2025 13:26:43">0340c23687db96504102cd0a0cbb3581</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:26:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="m2m_sp_widget_dependency">m2m_sp_widget_dependency</sys_db_object>
+        <sys_id>04b5902311084f608f5424db4cb24400</sys_id>
+        <sys_metadata>07dc75fa879b96504102cd0a0cbb35f3</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HVS JS External .Yearly Review List</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>m2m_sp_widget_dependency_07dc75fa879b96504102cd0a0cbb35f3</sys_update_name>
+        <sys_update_version display_value="m2m_sp_widget_dependency_07dc75fa879b96504102cd0a0cbb35f3">4bdc357e879b96504102cd0a0cbb359e</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:26:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

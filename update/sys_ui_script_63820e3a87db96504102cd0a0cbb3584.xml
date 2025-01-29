@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <ignore_in_now_experience>false</ignore_in_now_experience>
+        <name>x_snc_createnotes.HVS EA Angular Materia</name>
+        <script><![CDATA[// Angular Material UI Script
+var angularMaterial = {
+    type: 'text/javascript',
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.24/angular-material.min.js'
+};
+
+// Angular Animations UI Script
+var angularAnimations = {
+    type: 'text/javascript',
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.min.js'
+};
+]]></script>
+        <script_name>HVS EA Angular Material</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:37:41</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>63820e3a87db96504102cd0a0cbb3584</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_createnotes.HVS EA Angular Materia</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sys_ui_script_63820e3a87db96504102cd0a0cbb3584</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:37:41</sys_updated_on>
+        <ui_type>1</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

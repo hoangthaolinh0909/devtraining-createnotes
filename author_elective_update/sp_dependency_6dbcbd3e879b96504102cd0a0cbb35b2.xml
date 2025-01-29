@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_dependency">
+    <sp_dependency action="DELETE">
+        <module>hvs_js_external</module>
+        <name>HVS JS External </name>
+        <page_load>false</page_load>
+        <sp_portals/>
+        <sys_class_name>sp_dependency</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:11:42</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6dbcbd3e879b96504102cd0a0cbb35b2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>HVS JS External </sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_dependency_6dbcbd3e879b96504102cd0a0cbb35b2</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:15:10</sys_updated_on>
+    </sp_dependency>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sp_dependency_6dbcbd3e879b96504102cd0a0cbb35b2</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_dependency"><sp_dependency action="INSERT_OR_UPDATE"><module>hvs_js_external</module><name>HVS JS External </name><page_load>false</page_load><sp_portals/><sys_class_name>sp_dependency</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-01-28 12:11:42</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>6dbcbd3e879b96504102cd0a0cbb35b2</sys_id><sys_mod_count>1</sys_mod_count><sys_name>HVS JS External </sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>sp_dependency_6dbcbd3e879b96504102cd0a0cbb35b2</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-01-28 12:15:10</sys_updated_on></sp_dependency></record_update>]]></payload>
+        <payload_hash>1250325112</payload_hash>
+        <record_name>HVS JS External </record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:15:10</sys_created_on>
+        <sys_id>69adf5f6879b96504102cd0a0cbb359e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194acd6411d0000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:15:10</sys_updated_on>
+        <type>Widget Dependency</type>
+        <update_guid>a9adf5f6a19b965088a5a79d5a30089d</update_guid>
+        <update_guid_history>a9adf5f6a19b965088a5a79d5a30089d:1250325112,cfdc75fa0c9b96501f81fa58b6a2c6f0:-1155057687</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Record deleted 28.01.2025 13:26:43">cf40c23687db96504102cd0a0cbb357d</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-28 12:26:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sp_dependency">sp_dependency</sys_db_object>
+        <sys_id>4de127480fae439091e31a6a473798c9</sys_id>
+        <sys_metadata>6dbcbd3e879b96504102cd0a0cbb35b2</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HVS JS External </sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sp_dependency_6dbcbd3e879b96504102cd0a0cbb35b2</sys_update_name>
+        <sys_update_version display_value="sp_dependency_6dbcbd3e879b96504102cd0a0cbb35b2">69adf5f6879b96504102cd0a0cbb359e</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-28 12:26:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

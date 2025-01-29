@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="collaborator_satisfaction" table="x_snc_createnotes_note" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>collaborator_satisfaction</element>
+            <name>x_snc_createnotes_note</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 08:02:22</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>collaborator_satisfaction</sys_name>
+            <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+            <sys_update_name>sys_choice_x_snc_createnotes_note_collaborator_satisfaction</sys_update_name>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 08:02:22</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Work environment (e.g. workstation ergonomics) / work-life balance</label>
+            <language>en</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:06:55</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:52:43</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Environnement de travail (p. ex :ergonomie poste de travail) / équilibre vie privée - vie profession</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:55:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:55:17</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Workload (quantity and nature of tasks)</label>
+            <language>en</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:06:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:52:53</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Charge de travail (quantité et nature des tâches)</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:55:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:55:30</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Ambiance et climat de travail</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:55:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:55:41</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Work atmosphere and climate</label>
+            <language>en</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:07:04</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:52:59</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Team spirit (colleagues)</label>
+            <language>en</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 08:02:22</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>6</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:53:08</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Esprit de collaboration (collègues)</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:55:53</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:55:53</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Relation avec le supérieur hiérarchique</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>5</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:56:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:56:03</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Relationship with manager</label>
+            <language>en</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>5</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:07:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:53:14</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Motivation générale</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>6</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:56:22</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:56:22</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaborator_satisfaction</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>General motivation</label>
+            <language>en</language>
+            <name>x_snc_createnotes_note</name>
+            <sequence>6</sequence>
+            <synonyms/>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-28 09:53:26</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-28 09:54:26</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation action="DELETE" element="work_atmosphere_climate" label="Ambiance et climat de travail" language="fr" table="x_snc_createnotes_note">
+        <sys_documentation action="DELETE">
+            <element>work_atmosphere_climate</element>
+            <help/>
+            <hint/>
+            <label>Ambiance et climat de travail</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <plural>Ambiance et climat de travail</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-01-29 11:00:09</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>a416360f87d35a504102cd0a0cbb356d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Ambiance et climat de travail</sys_name>
+            <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_createnotes_note_work_atmosphere_climate_fr</sys_update_name>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-01-29 11:00:09</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sys_documentation_x_snc_createnotes_note_work_atmosphere_climate_fr</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_documentation element="work_atmosphere_climate" label="Ambiance et climat de travail" language="fr" table="x_snc_createnotes_note"><sys_documentation action="INSERT_OR_UPDATE"><element>work_atmosphere_climate</element><help/><hint/><label>Ambiance et climat de travail</label><language>fr</language><name>x_snc_createnotes_note</name><plural>Ambiance et climat de travail</plural><sys_class_name>sys_documentation</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-01-29 11:00:09</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>a416360f87d35a504102cd0a0cbb356d</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Ambiance et climat de travail</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>sys_documentation_x_snc_createnotes_note_work_atmosphere_climate_fr</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-01-29 11:00:09</sys_updated_on><url/><url_target/></sys_documentation></sys_documentation></record_update>]]></payload>
+        <payload_hash>5137062</payload_hash>
+        <record_name>Yearly employee review.Work atmosphere and climate</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-29 11:00:09</sys_created_on>
+        <sys_id>e816360f87d35a504102cd0a0cbb3571</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194b1b7f00c0000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-29 11:00:09</sys_updated_on>
+        <type>Field Label</type>
+        <update_guid>6c16360fe8d35a5061bbadc2ad5d736f</update_guid>
+        <update_guid_history>6c16360fe8d35a5061bbadc2ad5d736f:5137062</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-29 11:04:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sys_documentation">sys_documentation</sys_db_object>
+        <sys_id>b9990ab016d642509f6a9ddd83de2e90</sys_id>
+        <sys_metadata>a416360f87d35a504102cd0a0cbb356d</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Ambiance et climat de travail</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent display_value="">cbd5f64f87d35a504102cd0a0cbb3521</sys_parent>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sys_documentation_x_snc_createnotes_note_work_atmosphere_climate_fr</sys_update_name>
+        <sys_update_version display_value="sys_documentation_x_snc_createnotes_note_work_atmosphere_climate_fr">e816360f87d35a504102cd0a0cbb3571</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-29 11:04:39</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
