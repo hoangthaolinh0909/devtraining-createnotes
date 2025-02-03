@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="DELETE">
+        <sp_dependency display_value="PSO DatePicker">dea1806b871f9250e27da8240cbb35f8</sp_dependency>
+        <sp_widget display_value="Yearly Review List">06948fa8db3133000613a08a4896194c</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-30 11:09:20</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>fcc1442b871f9250e27da8240cbb35cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PSO DatePicker.Yearly Review List</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_fcc1442b871f9250e27da8240cbb35cb</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-30 11:09:20</sys_updated_on>
+    </m2m_sp_widget_dependency>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>m2m_sp_widget_dependency_fcc1442b871f9250e27da8240cbb35cb</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency"><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="PSO DatePicker">dea1806b871f9250e27da8240cbb35f8</sp_dependency><sp_widget display_value="Yearly Review List">06948fa8db3133000613a08a4896194c</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-01-30 11:09:20</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>fcc1442b871f9250e27da8240cbb35cb</sys_id><sys_mod_count>0</sys_mod_count><sys_name>PSO DatePicker.Yearly Review List</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>m2m_sp_widget_dependency_fcc1442b871f9250e27da8240cbb35cb</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-01-30 11:09:20</sys_updated_on></m2m_sp_widget_dependency></record_update>]]></payload>
+        <payload_hash>2070599424</payload_hash>
+        <record_name>PSO DatePicker.Yearly Review List</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-30 11:09:20</sys_created_on>
+        <sys_id>b8c1446b871f9250e27da8240cbb3567</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194b6e6b4cb0000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-30 11:09:20</sys_updated_on>
+        <type>Widget Dependency</type>
+        <update_guid>b0c1442b961f9250fd6b90cf46ccbcce</update_guid>
+        <update_guid_history>b0c1442b961f9250fd6b90cf46ccbcce:2070599424</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Enregistrement supprimé 30.01.2025 17:16:55">ae28c96b8793d250e27da8240cbb354a</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-01-30 16:16:55</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="m2m_sp_widget_dependency">m2m_sp_widget_dependency</sys_db_object>
+        <sys_id>04fea5c4d63e456e81153dc5d42feca4</sys_id>
+        <sys_metadata>fcc1442b871f9250e27da8240cbb35cb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PSO DatePicker.Yearly Review List</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>m2m_sp_widget_dependency_fcc1442b871f9250e27da8240cbb35cb</sys_update_name>
+        <sys_update_version display_value="m2m_sp_widget_dependency_fcc1442b871f9250e27da8240cbb35cb">b8c1446b871f9250e27da8240cbb3567</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-01-30 16:16:55</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
