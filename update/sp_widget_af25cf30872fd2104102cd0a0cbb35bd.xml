@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($uibModal, $scope) {
+	/* widget controller */
+	var c = this;
+	//Remove " ||data.rolePilot == false" after pilot stage
+	if(!c.data.isAuthorized){
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'modalTemplate',
+			backdrop:"static",
+			scope: $scope
+		});
+	}
+		
+	c.closeModal = function() {
+		document.location = "/esc";
+		
+	};	
+		
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>hvs_annual_review_not_available</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) { 
+
+ }]]></link>
+        <name>HVS Annual Review Not Available</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	
+	var HCU = new global.HVSUserContractUtils();
+	data.isAuthorized = HCU.isUserPartOfCompany(gs.getUserID(),'a9fab53c0a0a8c0701d8e61fabe0ed9f');
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 22:35:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>af25cf30872fd2104102cd0a0cbb35bd</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>HVS Annual Review Not Available</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_af25cf30872fd2104102cd0a0cbb35bd</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 22:59:43</sys_updated_on>
+        <template><![CDATA[<script type="text/ng-template" id="modalTemplate">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">${Information}</h4>
+        </div>
+		<div class="panel-body wrapper-xl">
+			${annual_review_access_not_authorized}
+        </div>
+        <div class="panel-footer text-right">
+        	 <button class="btn btn-primary" ng-click="c.closeModal()">${Close}</button>
+        </div>
+  </div>
+</script>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>af25cf30872fd2104102cd0a0cbb35bd</id>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 22:36:17</sys_created_on>
+        <sys_id>a25587f0872fd2104102cd0a0cbb3596</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 22:36:17</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

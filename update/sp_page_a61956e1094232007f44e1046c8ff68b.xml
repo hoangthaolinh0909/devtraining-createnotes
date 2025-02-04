@@ -2,22 +2,36 @@
     <sp_page action="INSERT_OR_UPDATE">
         <category/>
         <css>section.page {
-	background: radial-gradient(at right bottom, #f8f6f6 6.56%, #f8f6f6 11.16%, #f8f6f6 17.26%, #f8f6f6 22.64%, #f8f6f6 42.58%);
+  background: radial-gradient(at right bottom, #f8f6f6 6.56%, #f8f6f6 11.16%, #f8f6f6 17.26%, #f8f6f6 22.64%, #f8f6f6 42.58%);
 }
 
 .icon-homepage-sphvs{
-    background-color: rgba(237,241,242, 0.95);
-    border-radius: 4px;
-    /*margin-right: 2px;
-    margin-left: 2px;*/
+  background-color: rgba(237,241,242, 0.95);
+  border-radius: 4px;
 }
 
 .css_home_dimension{
-    width: 1600px; 
-  	height: 100%;
-    margin: 0 auto;
-    padding-top: 30px;
+  width: 1600px; 
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 30px;
   float: left;
+}
+
+.header_background {
+  background-image: url(e68c9c3….iix);
+  height: 15vh;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  align-content: center;
+}
+
+.icon_link {
+  text-align: center;
+}
+
+body .padding-top {
+  padding-top:0rem !important;
 }
 
 </css>
@@ -36,7 +50,7 @@
         <sys_created_on>2017-04-10 19:08:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a61956e1094232007f44e1046c8ff68b</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>notes_home</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -44,7 +58,7 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_page_a61956e1094232007f44e1046c8ff68b</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-30 14:51:00</sys_updated_on>
+        <sys_updated_on>2025-02-03 12:38:13</sys_updated_on>
         <title>CreateNotes Home</title>
         <use_seo_script>false</use_seo_script>
     </sp_page>

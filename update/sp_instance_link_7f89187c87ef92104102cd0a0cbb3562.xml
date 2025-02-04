@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <order>1</order>
+        <roles/>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">c148d83887ef92104102cd0a0cbb35c7</sp_column>
+        <sp_page/>
+        <sp_widget display_value="HVS Annual Review Icon Link">48f618b487ef92104102cd0a0cbb3591</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 10:05:42</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7f89187c87ef92104102cd0a0cbb3562</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_instance_link_7f89187c87ef92104102cd0a0cbb3562</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 14:16:24</sys_updated_on>
+        <title/>
+        <type>page</type>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"link_template": {
+		"value": "Image Icon",
+		"displayValue": "Image Icon"
+	},
+	"image": {
+		"value": "874964708763d2104102cd0a0cbb3558",
+		"displayValue": "874964708763d2104102cd0a0cbb3558"
+	},
+	"target": {
+		"value": "",
+		"displayValue": ""
+	},
+	"label": {
+		"value": "my_annual_reviews",
+		"displayValue": "my_annual_reviews"
+	},
+	"view": {
+		"value": 1,
+		"displayValue": "1"
+	}
+}]]></widget_parameters>
+    </sp_instance_link>
+    <sys_translated_text action="delete_multiple" query="documentkey=7f89187c87ef92104102cd0a0cbb3562"/>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>7f89187c87ef92104102cd0a0cbb3562</documentkey>
+        <fieldname>short_description</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 14:16:24</sys_created_on>
+        <sys_id>80f25df087eb9610e27da8240cbb35c8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 14:16:24</sys_updated_on>
+        <tablename>sp_instance_link</tablename>
+        <value/>
+    </sys_translated_text>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>7f89187c87ef92104102cd0a0cbb3562</documentkey>
+        <fieldname>title</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 14:16:24</sys_created_on>
+        <sys_id>80f2553887eb9610e27da8240cbb351f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 14:16:24</sys_updated_on>
+        <tablename>sp_instance_link</tablename>
+        <value/>
+    </sys_translated_text>
+</record_update>

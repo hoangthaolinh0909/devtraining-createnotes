@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <order>1</order>
+        <roles/>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">0948d83887ef92104102cd0a0cbb35ca</sp_column>
+        <sp_page/>
+        <sp_widget display_value="HVS Annual Review Icon Link">48f618b487ef92104102cd0a0cbb3591</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 10:02:10</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f7b8dc3887ef92104102cd0a0cbb3538</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_instance_link_f7b8dc3887ef92104102cd0a0cbb3538</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 14:16:33</sys_updated_on>
+        <title/>
+        <type>page</type>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"image": {
+		"value": "ec6105b887a3d2104102cd0a0cbb35de",
+		"displayValue": "ec6105b887a3d2104102cd0a0cbb35de"
+	},
+	"label": {
+		"value": "my_team_annual_reviews",
+		"displayValue": "my_team_annual_reviews"
+	},
+	"view": {
+		"value": 2,
+		"displayValue": "2"
+	}
+}]]></widget_parameters>
+    </sp_instance_link>
+    <sys_translated_text action="delete_multiple" query="documentkey=f7b8dc3887ef92104102cd0a0cbb3538"/>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>f7b8dc3887ef92104102cd0a0cbb3538</documentkey>
+        <fieldname>short_description</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 13:20:54</sys_created_on>
+        <sys_id>c336c9b8876b9610e27da8240cbb3561</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 13:20:54</sys_updated_on>
+        <tablename>sp_instance_link</tablename>
+        <value/>
+    </sys_translated_text>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>f7b8dc3887ef92104102cd0a0cbb3538</documentkey>
+        <fieldname>title</fieldname>
+        <language>fr</language>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 13:20:54</sys_created_on>
+        <sys_id>0b36c9b8876b9610e27da8240cbb3565</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 13:20:54</sys_updated_on>
+        <tablename>sp_instance_link</tablename>
+        <value/>
+    </sys_translated_text>
+</record_update>

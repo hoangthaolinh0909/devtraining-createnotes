@@ -43,14 +43,14 @@
 	$scope.textarea_ea_remarks_comments = "";
 	*/
 	
-	$scope.triggerOnSubmit = function (review_id) {
+	$scope.triggerOnSubmit = function () {
 		//spUtil.addTrivialMessage(c.data);
 		c.data.action="updateReview";
 		c.server.update().then(function(){
 			c.data.action="";
 		});
 	}
-
+	
 	$rootScope.$on('selectReview', function(event,name) {
 		c.data.table = $rootScope.reviewTable;
 		c.data.sys_id = $rootScope.reviewID;
@@ -60,6 +60,7 @@
 			sys_id : $rootScope.reviewID,
 			action : "selectReview"
 		}).then(function(r){
+			console.log(r.data);
 			c.data = r.data;
 			var fields = r.data.f._fields
 			$scope.hasSelected = r.data.hasSelected;
@@ -68,9 +69,23 @@
 	})
 
 	function setVarsValues (f) {
-
+		c.data.review_state = f.review_state.value;
+		c.data.isDisabled = f.review_state.value =='completed' ? true : false;
+		if(c.data.isDisabled) {
+			var el=document.getElementById("fieldset_1");
+			el.setAttribute("disabled", "true");
+		}
+		else {
+			var el=document.getElementById("fieldset_1");
+			el.removeAttribute("disabled");
+		}
 		// Collaborator Information vars
 		c.data.collaborator = f.collaborator.displayValue;
+		c.data.job_company = f.job_company.displayValue;
+		c.data.job_department = f.job_department.displayValue;
+		c.data.job_title = f.job_title.displayValue;
+		c.data.job_commitment_date = f.job_commitment_date.displayValue;
+
 		var sDate = f.review_date.displayValue+'';
 		var sToday = c.data.review_date_defsult;
 		if(!sDate) {
@@ -79,10 +94,6 @@
 		c.data.review_date = sDate;
 		$('#datetimepicker').datepicker('setDate',sDate);
 		//$('#datetimepicker').datepicker('setStartDate',sDate);
-		c.data.job_company = f.job_company.displayValue;
-		c.data.job_department = f.job_department.displayValue;
-		c.data.job_title = f.job_title.displayValue;
-		c.data.job_commitment_date = f.job_commitment_date.displayValue;
 
 		// Collaborator satisfaction vars
 		c.data.collaborator_work_environment = f.collaborator_work_environment.value;
@@ -435,8 +446,12 @@ label {
         <roles/>
         <script><![CDATA[// form functionality - URL parameter driven
 (function($sp, input, data, options, gs) {
-	//if (input) {
-	/* "use strict"; -linter issues */
+	/*
+		console.log("-------------------------------------------------------");
+		console.log(input);
+		console.log("-------------------------------------------------------");
+	*/
+
 	// populate the 'data' variable
 	var currentDay = new GlideDate();
 	data.review_date_defsult = currentDay.getDisplayValue();
@@ -457,7 +472,7 @@ label {
 		data.table = input.table;
 		data.sys_id = input.sys_id;
 		data.hasSelected=true;
-		
+
 		data.f = $sp.getForm(data.table, data.sys_id);
 
 		/************************************* Collaborator Satisfaction ************************************/
@@ -479,11 +494,7 @@ label {
 		data.radio_other_manager_evaluation_2 = getOptionItems("other_manager_evaluation_2");
 		data.radio_other_manager_evaluation_1 = getOptionItems("other_manager_evaluation_1");
 		data.title_objective_measure = getOptionItems("review_objective_or_meausre");
-		console.log(data.objective_measure);
-		console.log("--------------------------------------------------");
 		data.title_training_and_professional_development = getOptionItems("training_and_professional_development");
-		console.log(data.training_and_professional_development);
-		console.log("--------------------------------------------------");
 		data.title_remarks_comments = getOptionItems("remarks_comments");
 		data.collaborator_satisfaction = getOptionItems("collaborator_satisfaction");
 		data.manager_evaluation = getOptionItems("manager_evaluation");
@@ -491,9 +502,44 @@ label {
 		/****************************************************************************************************/
 	}
 	else if(input && input.action=="updateReview") {
-		console.log("-------------------------------------------------------");
-		console.log(input);
-		console.log("-------------------------------------------------------");
+		var grReview = new GlideRecord("x_snc_createnotes_note");
+		if (grReview.get(input.sys_id)) {
+
+			// Review date
+			grReview.review_date = input.review_date;
+
+			// Collaborator satisfaction vars
+			grReview.collaborator_work_environment = input.collaborator_work_environment;
+			grReview.collaborator_workload = input.collaborator_workload;
+			grReview.collaborator_work_atmosphere_climate = input.collaborator_work_atmosphere_climate;
+			grReview.collaborator_team_spirit = input.collaborator_team_spirit;
+			grReview.collaborator_relationship_manager = input.collaborator_relationship_manager;
+			grReview.collaborator_general_motivation = input.collaborator_general_motivation;
+
+			// Manager evaluation vars
+			grReview.manager_effectiveness_and_efficiency = input.manager_effectiveness_and_efficiency;
+			grReview.manager_customer_satisfaction = input.manager_customer_satisfaction;
+			grReview.manager_cooperation_helpfulness = input.manager_cooperation_helpfulness;
+			grReview.manager_identification_institution = input.manager_identification_institution;
+			grReview.manager_vision = input.manager_vision; 
+			grReview.manager_solution_oriented_proactive = input.manager_solution_oriented_proactive;
+			grReview.manager_leadership_na = input.manager_leadership_na;
+			grReview.other_manager_evaluation_1 = input.other_manager_evaluation_1;
+			grReview.other_manager_evaluation_2 = input.other_manager_evaluation_2;
+
+			// Objective or measure var
+			grReview.review_objective_or_meausre = input.review_objective_or_meausre;
+
+			// Desire for training and professional development var
+			grReview.training_and_professional_development = input.training_and_professional_development;
+
+			// Remarks comments var
+			grReview.remarks_comments = input.remarks_comments;
+
+			// save updates
+			grReview.update();
+		}
+
 	}
 	else {
 		data.hasSelected=false;
@@ -525,7 +571,7 @@ label {
         <sys_created_on>2025-01-24 08:57:01</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>58f9a4e1875fd610e27da8240cbb3549</sys_id>
-        <sys_mod_count>625</sys_mod_count>
+        <sys_mod_count>775</sys_mod_count>
         <sys_name>Yearly Review Form</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -533,7 +579,7 @@ label {
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_58f9a4e1875fd610e27da8240cbb3549</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-03 00:44:45</sys_updated_on>
+        <sys_updated_on>2025-02-04 01:32:46</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default" ng-hide="!hasSelected">
   <div role="region" aria-label="Item Details">
     <div class="wrapper-md b-b break-word item-header clearfix" ng-class="{true: '', false: 'sc-sticky-item-header'}[!c.data.sc_cat_item.short_description]" style="top: 0px">
@@ -588,8 +634,7 @@ label {
 
     <!-- collaborator_work_environment -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-
-      <fieldset class="form-group">
+			<fieldset id="fieldset_1" class="form-group" ng-disabled="{{data.isDisabled}}">{{c.data.isDisabled}}     
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -952,11 +997,11 @@ label {
 
   <!-- ****************************** Save button ****************************** -->
   <div class="form-group m-b-xs ng-scope" ng-if="c.options.native_mobile != 'true'">
-    <button sp-ellipsis-tooltip="" sp-ellipsis-tooltip-title="Submit" tabindex="0" name="submit" id="submit-btn" ng-click="triggerOnSubmit(c.data.sys_id)" class="btn btn-primary btn-block text-overflow-ellipsis ng-binding ng-scope" data-toggle="tooltip" data-placement="auto" data-original-title="" title="">
+    <button sp-ellipsis-tooltip="" sp-ellipsis-tooltip-title="Submit" tabindex="0" name="submit" id="submit-btn" ng-click="triggerOnSubmit()" class="btn btn-primary btn-block text-overflow-ellipsis ng-binding ng-scope" data-toggle="tooltip" data-placement="auto" data-original-title="" title="">
       ${Save}
     </button>
   </div>
-
+<input value="{{c.data.isDisabled}}"/>
 </div>]]></template>
     </sp_widget>
 </record_update>

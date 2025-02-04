@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>standard</category>
+        <client_script><![CDATA[api.controller = function($scope, $rootScope, spUtil, spAriaUtil) {
+	var c= this;
+	$scope.accessibilityModeEnabled = spAriaUtil.isAccessibilityEnabled();
+
+	c.selectView = function () {
+		$rootScope.selectedView = c.options.view;
+		$rootScope.$broadcast('selectedView', c.options.view);
+	}
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* General button style */
+.div_image {
+  display: inline-block;
+  width:60px;
+}
+
+button {
+  
+}
+
+.btn {
+  vertical-align: middle;
+
+  font-family: 'Lato';
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/* Icon separator */
+.btn-sep {
+  padding: 25px 60px 25px 60px;
+  background: $brand-primary;
+  border:none;
+}
+
+.btn-sep:before {
+  background: rgba(0,0,0,0.15);
+}
+
+/* Button 1 */
+.btn-1 {
+  --f: 1.15;
+  background: $brand-primary;
+  color: #fff;
+  opacity: 0.75;
+
+  &amp;:hover {
+	clip-path: inset(calc((1 - 1/var(--f)) * 50%));
+  scale: var(--f);
+  opacity: 1;
+  }
+}
+
+.btn-1:hover {
+  background: $brand-primary;
+}
+
+.btn-1:active {
+  background: $brand-primary;
+  top: 2px;
+}
+</css>
+        <data_table>sp_instance_link</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>type,url,sc_category,sc_cat_item,kb_topic,kb_article,kb_category,sp_page,title,short_description,color,class_name,glyph</field_list>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>HVS Annual Review Icon Link</name>
+        <option_schema>[{"displayValue":"Images","name":"image","section":"other","default_value":"ec6105b887a3d2104102cd0a0cbb35de","label":"Image","type":"string","value":"db_image","ed":{"reference":"db_image"}},{"name":"label","section":"other","label":"Label","type":"string"},{"name":"view","section":"other","label":"View","type":"integer"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function(){
+	var gr = $sp.getInstanceRecord();
+	var img = new GlideRecord('db_image');
+	img.addQuery('sys_id', options.image);
+	img.query();
+	if (img.next()){
+		data.image = img.getValue('name');
+	}
+	data.btn_label = gs.getMessage(options.label);
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 09:54:16</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>48f618b487ef92104102cd0a0cbb3591</sys_id>
+        <sys_mod_count>132</sys_mod_count>
+        <sys_name>HVS Annual Review Icon Link</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_48f618b487ef92104102cd0a0cbb3591</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 22:30:07</sys_updated_on>
+        <template><![CDATA[<div class="btn btn-1">
+  <img class="div_image" src = "{{c.data.image}}">
+  <button id="btn-1" ng-click = "c.selectView()" class="btn-sep">{{c.data.btn_label}}</button>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>48f618b487ef92104102cd0a0cbb3591</id>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-03 09:54:35</sys_created_on>
+        <sys_id>b40758f487ef92104102cd0a0cbb351a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-03 09:54:35</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
