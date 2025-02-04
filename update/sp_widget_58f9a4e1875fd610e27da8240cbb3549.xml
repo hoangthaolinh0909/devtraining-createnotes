@@ -3,7 +3,7 @@
         <category>custom</category>
         <client_script><![CDATA[function($rootScope, $scope, $timeout, $location, $log, $window, spUtil, nowAttachmentHandler, spAriaUtil, spNavStateManager) {
 	var c=this;
-	
+
 	c.data.action="";
 	// Collaborator Information vars
 	/*
@@ -42,7 +42,7 @@
 	// Remarks comments var
 	$scope.textarea_ea_remarks_comments = "";
 	*/
-	
+
 	$scope.triggerOnSubmit = function () {
 		//spUtil.addTrivialMessage(c.data);
 		c.data.action="updateReview";
@@ -50,7 +50,7 @@
 			c.data.action="";
 		});
 	}
-	
+
 	$rootScope.$on('selectReview', function(event,name) {
 		c.data.table = $rootScope.reviewTable;
 		c.data.sys_id = $rootScope.reviewID;
@@ -60,25 +60,40 @@
 			sys_id : $rootScope.reviewID,
 			action : "selectReview"
 		}).then(function(r){
-			console.log(r.data);
 			c.data = r.data;
 			var fields = r.data.f._fields
 			$scope.hasSelected = r.data.hasSelected;
 			setVarsValues(fields);
+			disableFields();
 		});
 	})
+
+	function disableFields() {
+		var fieldsets = document.getElementsByTagName("fieldset");
+		for (var i=0; i < fieldsets.length; i++) {
+			fieldset = fieldsets[i];
+			if(c.data.isDisabled) {
+				fieldset.setAttribute("disabled", "true");
+			}
+			else {
+				fieldset.removeAttribute("disabled");
+			}
+		}
+	}
+
+	$('#datetimepicker').datepicker({
+		format: "dd.mm.yyyy", 
+		endDate: "+3m",
+		todayBtn: "linked",
+		calendarWeeks: true,
+		autoclose: true,
+		language: "fr",
+		todayHighlight: true
+	});
 
 	function setVarsValues (f) {
 		c.data.review_state = f.review_state.value;
 		c.data.isDisabled = f.review_state.value =='completed' ? true : false;
-		if(c.data.isDisabled) {
-			var el=document.getElementById("fieldset_1");
-			el.setAttribute("disabled", "true");
-		}
-		else {
-			var el=document.getElementById("fieldset_1");
-			el.removeAttribute("disabled");
-		}
 		// Collaborator Information vars
 		c.data.collaborator = f.collaborator.displayValue;
 		c.data.job_company = f.job_company.displayValue;
@@ -87,7 +102,7 @@
 		c.data.job_commitment_date = f.job_commitment_date.displayValue;
 
 		var sDate = f.review_date.displayValue+'';
-		var sToday = c.data.review_date_defsult;
+		var sToday = c.data.review_date_default;
 		if(!sDate) {
 			sDate = sToday;
 		}
@@ -136,7 +151,7 @@
 		var result = dd + '/' + mm + '/' + yyyy;
 		return result;
 	}
-	
+
 	/*
 	if(c.data.table) {
 				$('#datetimepicker').datepicker({
@@ -153,7 +168,9 @@
 	*/
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.btn-form-menu {
+        <css>
+
+.btn-form-menu {
   vertical-align: inherit;
   padding: inherit;
   background: none;
@@ -420,13 +437,12 @@ label {
 			titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
 			weekStart: 0
 		};
-/*
+
 		setTimeout(function(){
-*/
+
 			var sToday = new Date().toJSON().slice(0, 10)
 			$('#datetimepicker').datepicker({
 				format: "dd.mm.yyyy", 
-				startDate : "+0d",
 				endDate: "+3m",
 				todayBtn: "linked",
 				calendarWeeks: true,
@@ -434,9 +450,9 @@ label {
 				language: "fr",
 				todayHighlight: true
 			});
-/*		
+		
 		},300);
-*/
+
 	});
 
 }]]></link>
@@ -454,7 +470,7 @@ label {
 
 	// populate the 'data' variable
 	var currentDay = new GlideDate();
-	data.review_date_defsult = currentDay.getDisplayValue();
+	data.review_date_default = currentDay.getDisplayValue();
 	data.attachmentUploadSuccessMsg = gs.getMessage("Attachment upload was successful");
 	data.recordAddedMsg = gs.getMessage("Record Added");
 	data.updatedMsg = gs.getMessage("Record Updated");
@@ -507,6 +523,8 @@ label {
 
 			// Review date
 			grReview.review_date = input.review_date;
+			var sDate = input.review_date+'';
+			grReview.review_year = sDate.slice(-4);
 
 			// Collaborator satisfaction vars
 			grReview.collaborator_work_environment = input.collaborator_work_environment;
@@ -571,7 +589,7 @@ label {
         <sys_created_on>2025-01-24 08:57:01</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>58f9a4e1875fd610e27da8240cbb3549</sys_id>
-        <sys_mod_count>775</sys_mod_count>
+        <sys_mod_count>797</sys_mod_count>
         <sys_name>Yearly Review Form</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -579,7 +597,7 @@ label {
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_58f9a4e1875fd610e27da8240cbb3549</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-04 01:32:46</sys_updated_on>
+        <sys_updated_on>2025-02-04 20:05:44</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default" ng-hide="!hasSelected">
   <div role="region" aria-label="Item Details">
     <div class="wrapper-md b-b break-word item-header clearfix" ng-class="{true: '', false: 'sc-sticky-item-header'}[!c.data.sc_cat_item.short_description]" style="top: 0px">
@@ -594,13 +612,15 @@ label {
         <input type="text" class="form-control" disabled ng-model="data.collaborator" id="collaborator" placeholder="">
       </div>
       <div class="col-md-6">
-        <label for="datetimepicker">Review date</label>
-        <div class='input-group date' id="datetimepicker">
-          <input type='text' class="form-control" ng-model="data.review_date" value="{{review_date}}" data-date-format="dd.mm.yyyy"/>
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
+        <fieldset id="fieldset_1">          
+          <label for="datetimepicker">Review date</label>
+          <div class='input-group date' id="datetimepicker">
+            <input type='text' class="form-control" ng-model="data.review_date" value="{{review_date}}" data-date-format="dd.mm.yyyy"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </fieldset>
       </div>
     </div>
 
@@ -621,7 +641,7 @@ label {
     </div>
     <div class="form-row">
       <label for="job_commitment_date">Job Commitment date</label>
-      <input type="text" class="form-control" disabled ng-model="data.ob_commitment_date" ng-readonly="true" id="job_commitment_date" placeholder="">
+      <input type="text" class="form-control" disabled ng-model="data.job_commitment_date" ng-readonly="true" id="job_commitment_date" placeholder="">
     </div>
   </div>
 
@@ -634,7 +654,7 @@ label {
 
     <!-- collaborator_work_environment -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-			<fieldset id="fieldset_1" class="form-group" ng-disabled="{{data.isDisabled}}">{{c.data.isDisabled}}     
+      <fieldset id="fieldset_1" class="form-group" ng-disabled="{{data.isDisabled}}">     
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -657,7 +677,7 @@ label {
 
     <!-- collaborator_workload -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_2" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -678,7 +698,7 @@ label {
 
     <!-- collaborator_work_atmosphere_climate -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_3" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -699,7 +719,7 @@ label {
 
     <!-- collaborator_team_spirit -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_4" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -720,7 +740,7 @@ label {
 
     <!-- collaborator_relationship_manager -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_5" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -741,7 +761,7 @@ label {
 
     <!-- collaborator_general_motivation -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_6" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -770,7 +790,7 @@ label {
 
     <!-- manager_effectiveness_and_efficiency -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_7" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -791,7 +811,7 @@ label {
 
     <!-- manager_customer_satisfaction -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_8" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -812,7 +832,7 @@ label {
 
     <!-- manager_cooperation_helpfulness -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_9" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -833,7 +853,7 @@ label {
 
     <!-- manager_identification_institution -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_10" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -854,7 +874,7 @@ label {
 
     <!-- manager_vision -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_11" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -875,7 +895,7 @@ label {
 
     <!-- manager_solution_oriented_proactive -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_12" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -896,7 +916,7 @@ label {
 
     <!-- manager_leadership_na -->
     <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <fieldset class="form-group">
+      <fieldset id="fieldset_13" class="form-group">
         <div class="layout">
           <div style="width:50%;">
             <label class="field-label field-label-question">
@@ -929,7 +949,7 @@ label {
       <div class="layout">
         <textarea class="input" id="other_manager_evaluation_1"></textarea>
       </div>
-      <fieldset class="form-group">
+      <fieldset id="fieldset_14" class="form-group">
         <div class="radio layout">
           <label ng-if="::other_evaluation_1.value" ng-repeat="other_evaluation_1 in data.radio_other_manager_evaluation_1" ng-init="test_other_manager_evaluation_1=6-$index+1">
             <input type="radio" ng-model="data.other_manager_evaluation_1" name="other_manager_evaluation_1" value="{{test_other_manager_evaluation_1}}" ng-checked="test_other_manager_evaluation_1==c.data.f._fields[c.data.radio_other_manager_evaluation_1[1]].value">
@@ -941,7 +961,7 @@ label {
       <div class="layout">
         <textarea class="input" id="other_manager_evaluation_2"></textarea>
       </div>
-      <fieldset class="form-group">
+      <fieldset id="fieldset_15" class="form-group">
         <div class="radio layout">
           <label ng-if="::other_evaluation_2.value" ng-repeat="other_evaluation_2 in data.radio_other_manager_evaluation_2" ng-init="test_other_manager_evaluation_2=6-$index+1">
             <input type="radio" ng-model="data.other_manager_evaluation_2" name="other_manager_evaluation_2" value="{{test_other_manager_evaluation_2}}" ng-checked="test_other_manager_evaluation_2==c.data.f._fields[c.data.radio_other_manager_evaluation_2[1]].value">
@@ -960,11 +980,13 @@ label {
     </span>
 
     <!-- textarea_ea_review_objective_or_measure -->
-    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <div class="layout">
-        <textarea class="input" ng-model="data.review_objective_or_meausre" name="review_objective_or_meausre" id="textarea_ea_review_objective_or_measure"></textarea>
-      </div>    
-    </div>  
+    <fieldset id="fieldset_16">
+      <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+        <div class="layout">
+          <textarea class="input" ng-model="data.review_objective_or_meausre" name="review_objective_or_meausre" id="textarea_ea_review_objective_or_measure"></textarea>
+        </div>    
+      </div>
+    </fieldset>
   </div>
 
   <!-- ****************************** Desire for training and professional development ****************************** -->
@@ -974,11 +996,13 @@ label {
     </span>
 
     <!-- textarea_training_and_professional_development -->
-    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <div class="layout">
-        <textarea class="input" ng-model="data.training_and_professional_development" name="training_and_professional_development" id="textarea_ea_training_and_professional_development"></textarea>
-      </div>    
-    </div>  
+    <fieldset id="fieldset_17">
+      <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+        <div class="layout">
+          <textarea class="input" ng-model="data.training_and_professional_development" name="training_and_professional_development" id="textarea_ea_training_and_professional_development"></textarea>
+        </div>    
+      </div>
+    </fieldset>
   </div>
 
   <!-- ****************************** Remarks / commentse ****************************** -->
@@ -988,11 +1012,13 @@ label {
     </span>
 
     <!-- textarea_remarks_comments -->
-    <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
-      <div class="layout">
-        <textarea class="input" ng-model="data.remarks_comments" name="remarks_comments" id="textarea_ea_remarks_comments"></textarea>
-      </div>
-    </div>   
+    <fieldset id="fieldset_18">
+      <div class="row" style="color: rgb(195, 26, 31); padding-top: 10px;">
+        <div class="layout">
+          <textarea class="input" ng-model="data.remarks_comments" name="remarks_comments" id="textarea_ea_remarks_comments"></textarea>
+        </div>
+      </div>   
+    </fieldset>
   </div>
 
   <!-- ****************************** Save button ****************************** -->
@@ -1001,7 +1027,6 @@ label {
       ${Save}
     </button>
   </div>
-<input value="{{c.data.isDisabled}}"/>
 </div>]]></template>
     </sp_widget>
 </record_update>

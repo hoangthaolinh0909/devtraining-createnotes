@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_dictionary action="DELETE" element="collaborator_manager" table="x_snc_createnotes_note">
+        <active>true</active>
+        <array>false</array>
+        <attributes/>
+        <audit>false</audit>
+        <calculation>(function calculatedFieldValue(current) {&#13;
+&#13;
+	var manager = current.collaborator.getValue("manager");&#13;
+	return manager ;  // return the calculated value&#13;
+&#13;
+})(current);</calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label>Collaborator Manager</column_label>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>collaborator_manager</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <internal_type display_value="Reference">reference</internal_type>
+        <mandatory>false</mandatory>
+        <max_length>32</max_length>
+        <name>x_snc_createnotes_note</name>
+        <next_element/>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference display_value="" name="sys_user">sys_user</reference>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_dictionary</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-04 10:09:28</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f0d3e1c5872b16104102cd0a0cbb3576</sys_id>
+        <sys_name>Collaborator Manager</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sys_dictionary_x_snc_createnotes_note_collaborator_manager</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-04 12:20:04</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>true</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_dictionary>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sys_dictionary_x_snc_createnotes_note_collaborator_manager</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_dictionary action="INSERT_OR_UPDATE" element="collaborator_manager" table="x_snc_createnotes_note"><active>true</active><array>false</array><attributes/><audit>false</audit><calculation>(function calculatedFieldValue(current) {&#13;
+&#13;
+	var manager = current.collaborator.getValue("manager");&#13;
+	return manager ;  // return the calculated value&#13;
+&#13;
+})(current);</calculation><choice/><choice_field/><choice_table/><column_label>Collaborator Manager</column_label><comments/><create_roles/><default_value/><defaultsort/><delete_roles/><dependent/><dependent_on_field/><display>false</display><dynamic_creation>false</dynamic_creation><dynamic_creation_script/><dynamic_default_value/><dynamic_ref_qual/><element>collaborator_manager</element><element_reference>false</element_reference><foreign_database/><formula/><function_definition/><function_field>false</function_field><internal_type display_value="Reference">reference</internal_type><mandatory>false</mandatory><max_length>32</max_length><name>x_snc_createnotes_note</name><next_element/><primary>false</primary><read_only>false</read_only><read_roles/><reference display_value="" name="sys_user">sys_user</reference><reference_cascade_rule/><reference_floats>false</reference_floats><reference_key/><reference_qual/><reference_qual_condition/><reference_type/><spell_check>false</spell_check><staged>false</staged><sys_class_name>sys_dictionary</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-02-04 10:09:28</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>f0d3e1c5872b16104102cd0a0cbb3576</sys_id><sys_name>Collaborator Manager</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>sys_dictionary_x_snc_createnotes_note_collaborator_manager</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-02-04 12:20:04</sys_updated_on><table_reference>false</table_reference><text_index>false</text_index><unique>false</unique><use_dependent_field>false</use_dependent_field><use_dynamic_default>false</use_dynamic_default><use_reference_qualifier>simple</use_reference_qualifier><virtual>true</virtual><virtual_type>script</virtual_type><widget/><write_roles/><xml_view>false</xml_view></sys_dictionary></record_update>]]></payload>
+        <payload_hash>-476236286</payload_hash>
+        <record_name>Yearly employee review.Collaborator Manager</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-04 12:20:04</sys_created_on>
+        <sys_id>31e146cd87ab16104102cd0a0cbb355b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194d0e743790000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-04 12:20:04</sys_updated_on>
+        <type>Dictionary</type>
+        <update_guid>39e146cde7ab1610df68393947f85759</update_guid>
+        <update_guid_history>39e146cde7ab1610df68393947f85759:-476236286,f69b6d4dc02b16105d3541096353577a:569587280,1d2ae1cd432b16100e0d3e76f2b56aab:-2105062850,e8b7290d6c2b16105a9b6464e8d17ec2:-1692061317,0bc6ad89582b1610a2264c4edfded1b9:-625273951,b004e5c56e2b16103c6ba0dfa329ce19:-887667333</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-04 12:21:56</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sys_dictionary">sys_dictionary</sys_db_object>
+        <sys_id>e12e0542712b47dc951f10ad825b1b84</sys_id>
+        <sys_metadata>f0d3e1c5872b16104102cd0a0cbb3576</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Collaborator Manager</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent display_value="Yearly employee review">a070ff78879f96104102cd0a0cbb354a</sys_parent>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sys_dictionary_x_snc_createnotes_note_collaborator_manager</sys_update_name>
+        <sys_update_version display_value="sys_dictionary_x_snc_createnotes_note_collaborator_manager">31e146cd87ab16104102cd0a0cbb355b</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-04 12:21:56</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

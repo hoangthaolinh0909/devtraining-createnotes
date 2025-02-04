@@ -14,6 +14,8 @@
 		$rootScope.reviewTable = 'x_snc_createnotes_note';
 		$rootScope.$emit('selectReview', $scope.collab_id);
 	}
+	
+	if(!c.data.selectedView) c.data.selectedView=1
 
 	$rootScope.$on('selectedView', function(event,args) {
 		c.data.action = "selectedView";
@@ -24,30 +26,27 @@
 		}).then(function(r){
 			c.data.action = "";
 		});
-	})
+	});
+
+	c.RefreshList = function() {
+		c.data.action = "selectedView";
+		c.server.update({
+			selectedView : c.data.selectedView,
+			action : "selectedView"
+		}).then(function(r){
+			c.data.action = "";
+		});
+	}
 
 	spUtil.recordWatch($scope, "x_snc_createnotes_note", "numberANYTHING", function(r) {
-		//		spUtil.addInfoMessage(JSON.stringify((r.data)));
-		c.server.refresh();
-		/*
-		if(r.data.operation == "insert"){
-			c.server.refresh();
-		}
-
-		// Calls a Client Script function to do the update and pass the updated data object
-		// to the server.
-		if(r.data.operation == "update"){
-			c.snNoteUpdate(r, r.data.sys_id);
-		}
-
-
-		// Calls a Client Script function which deletes a record on the server and passes
-		// the updated data object back to the client.
-		if(r.data.operation == "delete"){
-			c.snNoteDelete(r.data.sys_id);
-		}
-		*/
+		c.server.update({
+			selectedView : c.data.selectedView,
+			action : "selectedView"
+		}).then(function(r){
+			c.data.action = "";
+		});
 	});
+	
 }
 ]]></client_script>
         <controller_as>c</controller_as>
@@ -59,7 +58,7 @@
 .panel {
   box-shadow: 0 0 1rem #6f6363;
   //position: fixed;
-  width: 15vw;
+  width: 20vw;
 }
 
 .panel-scroll {
@@ -110,7 +109,6 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
   color:#181B20 !important;
 }
 
-
 .card{
   border-radius: 10px;
   padding: 10px 10px 10px 20px;
@@ -152,6 +150,11 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
 
 .description{
   color: $text-muted;
+  font-size: 1.4rem;
+}
+
+.btn {
+  background-color: inherit;
 }
 
 .button{
@@ -175,6 +178,13 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
 }
 .w-100{
   width: 100%;
+}
+
+.customClass .tooltip-inner  {
+  color: $fff;
+  background-color: $brand-primary;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  font-size:14px;
 }
 
 .bg{
@@ -239,9 +249,8 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-	console.log(input);
-	if(input) console.log('input.selectedView==1: ' + (input.selectedView==1))
 	data.filterMessage = gs.getMessage("Filter");
+	data.tooltipMessage = gs.getMessage("refresh_reviews_list");
 
 	data.reviews = [];
 
@@ -259,16 +268,12 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
 		query='collaboratorDYNAMIC90d1921e5f510100a9ad2572f2b477fe';
 	}
 	
-	console.log('query: ' + query);
-	//collabReviewGR.setLimit(options.maximum_records_to_display);
 	collabReviewGR.addEncodedQuery(query);
 	collabReviewGR.orderByDesc('sys_created_on');
 	collabReviewGR.query(query);
-	console.log(collabReviewGR.getEncodedQuery());
 	while (collabReviewGR.next()) {
 		var CollabReviewObj = {};
-
-		$sp.getRecordDisplayValues(CollabReviewObj, collabReviewGR, 'collaborator,review_date,job_title, job_department, review_date ,sys_id');
+		$sp.getRecordDisplayValues(CollabReviewObj, collabReviewGR, 'collaborator,review_date,job_title, job_department, review_date , review_year, sys_id');
 		CollabReviewObj.image=getAvatarPath(collabReviewGR.getValue(("collaborator")));
 		CollabReviewObj.borderright = collabReviewGR.getValue("review_state");
 		data.reviews.push(CollabReviewObj);
@@ -317,7 +322,7 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <sys_created_on>2019-05-30 18:13:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>06948fa8db3133000613a08a4896194c</sys_id>
-        <sys_mod_count>761</sys_mod_count>
+        <sys_mod_count>900</sys_mod_count>
         <sys_name>Yearly Review List</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -325,36 +330,42 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_06948fa8db3133000613a08a4896194c</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-03 22:36:34</sys_updated_on>
+        <sys_updated_on>2025-02-04 19:58:48</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
-  <div class="panel-heading clearfix">
+  <div class="panel-heading clearfix btn-padding">
     <h3 class="panel-title pull-left">
-      ${hvs_yar_collaborators_list}
+      <span ng-if="c.data.selectedView==1 || !c.data.selectedView">${my_annual_reviews}</span>
+      <span ng-if="c.data.selectedView==2">${my_team_annual_reviews}</span>
     </h3>
-    <!--button class="btn btn-default pull-right" ng-click="c.newNote()"> 
-      <span class="glyphicon glyphicon-plus"></span> 
-    </button-->
+    <button class="btn pull-right" ng-click="c.confirmDelete()" uib-tooltip="${refresh_reviews_list}" tooltip-placement="left" tooltip-class="customClass" align="middle" title="">
+      <span class="glyphicon glyphicon-refresh"></span>
+    </button> 
   </div>
   <div class="panel-body"> 
-    <input placeholder="{{c.data.filterMessage}}" class="form-control" ng-model="reviewFilter" /> 
+    <input placeholder="{{c.data.filterMessage}}" class="form-control" ng-model="reviewFilter" />   
   </div>
-	<div class="panel-body panel-scroll" >
-  	<div class="card {{review.borderright}} panel-body" ng-class="{'card-selected': review.sys_id === collab_id}" ng-click="c.selectItem(review.sys_id)" ng-style="{'background': c.options.background_color, 'border': '.25rem solid'}" ng-repeat="review in data.reviews | filter: reviewFilter">
-    <span ng-if="::c.options.feature" class="tag" ng-style="{'background-color': c.options.feature_color}" ng-class="{'position-absolute': c.options.background_image && c.options.background_image != ''}">{{::c.options.feature}}</span>
-    <div class="avatar-display {{review.borderright}}">
-      <div ng-if="review.image" class="avatar-container avatar-large ng-isolate-scope" ng-click="c.selectItem(review.sys_id)" ng-style="{'background-image': 'url(' + review.image + ')' }"></div>
-      <h4 class="heading">
-        {{review.collaborator}}
-      </h4>
-    </div>
-    <div class="description {{review.borderright}}">
+  <div class="panel-body panel-scroll" >
+    <div class="card {{review.borderright}} panel-body" ng-class="{'card-selected': review.sys_id === collab_id}" ng-click="c.selectItem(review.sys_id)" ng-style="{'background': c.options.background_color, 'border': '.25rem solid'}" ng-repeat="review in data.reviews | filter: reviewFilter">
+      <span ng-if="::c.options.feature" class="tag" ng-style="{'background-color': c.options.feature_color}" ng-class="{'position-absolute': c.options.background_image && c.options.background_image != ''}">{{::c.options.feature}}</span>
+      <div class="avatar-display {{review.borderright}}">
+        <div ng-if="review.image" class="avatar-container avatar-large ng-isolate-scope" ng-click="c.selectItem(review.sys_id)" ng-style="{'background-image': 'url(' + review.image + ')' }"></div>
+        <h4 class="heading">
+          {{review.collaborator}}
+          <div>
+            <span class="description">${review_on} {{review.review_year}}</span>
+          </div>
+        </h4>
+      </div>
+      <div class="description {{review.borderright}}">
         {{review.job_title}}<br/>
         <!--{{review.job_department}}-->
-     </div>
+      </div>
+    </div>
   </div>
-    
-  </div>
+ 
 </div>
+
+
 
 ]]></template>
     </sp_widget>

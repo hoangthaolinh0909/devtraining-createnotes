@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="other_manager_evaluation_2" label="Autres" language="fr" table="x_snc_createnotes_note">
+    <sys_documentation element="other_manager_evaluation_2" label="Others" language="fr" table="x_snc_createnotes_note">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element>other_manager_evaluation_2</element>
             <help/>
             <hint/>
-            <label>Autres</label>
+            <label>Others</label>
             <language>fr</language>
             <name>x_snc_createnotes_note</name>
             <plural>Autres</plural>
@@ -12,15 +12,15 @@
             <sys_created_by>h40009222</sys_created_by>
             <sys_created_on>2025-01-29 18:17:18</sys_created_on>
             <sys_customer_update>false</sys_customer_update>
-            <sys_mod_count>2</sys_mod_count>
-            <sys_name>Autres</sys_name>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_name>Others</sys_name>
             <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
             <sys_update_name>sys_documentation_x_snc_createnotes_note_other_manager_evaluation_2_fr</sys_update_name>
             <sys_updated_by>h40009222</sys_updated_by>
-            <sys_updated_on>2025-01-29 18:22:36</sys_updated_on>
+            <sys_updated_on>2025-02-04 12:17:09</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

@@ -13,13 +13,37 @@
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>/* General button style */
+$secondary-color: #000000;
+//==Backgrounds
+$background-primary: #ffffff; //--now-color_background--primary
+$background-secondary: #f8f6f6; //--now-color_background--secondary
+$background-tertiary: #F5F0F1; //--now-color_background--tertiary
+
+//==borders
+$border-primary: #8790A1; //--now-color_border--primary
+$border-secondary: #BEACB2; //--now-color_border--secondary
+$border-tertiary: #E2DADD; //--now-color_border--tertiary
+
+$brand-primary: #c31a1f; //--now-color--primary-1
+$brand-danger: #E42338; //--now-color_alert--critical-2
+$brand-warning: #F0E000; //--now-color_alert--warning-2
+$brand-moderate: #8B6BFF; //--now-color_alert--moderate-2 NEW
+$brand-low: #9698A4; //--now-color_alert--low-2 NEW
+$brand-success: #51ae00; //--now-color_alert--positive-2
+$brand-info: #38aaf4; //--now-color_alert--info-2
+
 .div_image {
   display: inline-block;
   width:60px;
 }
 
-button {
-  
+button[disabled]  {
+  opacity: .5;
+  background-color: $background-primary;
+}
+
+.btn-sep .disabled {
+  background-color: $background-primary;
 }
 
 .btn {
@@ -64,6 +88,13 @@ button {
   scale: var(--f);
   opacity: 1;
   }
+  
+  &amp;:active { 
+   outline: none;
+	box-shadow: 0 0;
+  scale: var(--f);
+  opacity: 1;
+  }
 }
 
 .btn-1:hover {
@@ -98,6 +129,24 @@ button {
 	}
 	data.btn_label = gs.getMessage(options.label);
 
+	data.displayIconLink = (options.view==1) || ((options.view==3 || options.view==2) && checkIfManager(gs.getUserID()));
+	
+	console.log('options.view: ' + options.view);
+	console.log('checkIfManager(gs.getUserID()): ' + checkIfManager(gs.getUserID()));
+
+	function checkIfManager(inUser) {
+		var retValue = false;
+		var grSysUser = new GlideRecord('sys_user');
+		grSysUser.addEncodedQuery("manager=" + inUser + "^active=true");
+		grSysUser.query();
+		if(grSysUser.getRowCount() > 0) {
+			retValue = true
+		}
+		
+		return retValue;
+	}
+
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -105,7 +154,7 @@ button {
         <sys_created_on>2025-02-03 09:54:16</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>48f618b487ef92104102cd0a0cbb3591</sys_id>
-        <sys_mod_count>132</sys_mod_count>
+        <sys_mod_count>177</sys_mod_count>
         <sys_name>HVS Annual Review Icon Link</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -113,10 +162,10 @@ button {
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_48f618b487ef92104102cd0a0cbb3591</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-03 22:30:07</sys_updated_on>
-        <template><![CDATA[<div class="btn btn-1">
+        <sys_updated_on>2025-02-04 17:27:04</sys_updated_on>
+        <template><![CDATA[<div class="btn btn-1" ng-disabled="!data.displayIconLink">
   <img class="div_image" src = "{{c.data.image}}">
-  <button id="btn-1" ng-click = "c.selectView()" class="btn-sep">{{c.data.btn_label}}</button>
+  <button id="btn-1" ng-click = "c.selectView()" ng-disabled="!data.displayIconLink" class="btn-sep">{{c.data.btn_label}}</button>
 </div>
 ]]></template>
     </sp_widget>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation action="DELETE" element="collaborator_manager" label="Collaborator Manager" language="fr" table="x_snc_createnotes_note">
+        <sys_documentation action="DELETE">
+            <element>collaborator_manager</element>
+            <help/>
+            <hint/>
+            <label>Collaborator Manager</label>
+            <language>fr</language>
+            <name>x_snc_createnotes_note</name>
+            <plural/>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>h40009222</sys_created_by>
+            <sys_created_on>2025-02-04 12:17:08</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>2e31ca4d87ab16104102cd0a0cbb356f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Collaborator Manager</sys_name>
+            <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_createnotes_note_collaborator_manager_fr</sys_update_name>
+            <sys_updated_by>h40009222</sys_updated_by>
+            <sys_updated_on>2025-02-04 12:17:08</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <comments/>
+        <file_path/>
+        <instance_id>a9dd98e01b52f15865324089bd4bcbd6</instance_id>
+        <instance_name>vsdev2</instance_name>
+        <name>sys_documentation_x_snc_createnotes_note_collaborator_manager_fr</name>
+        <order/>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_documentation element="collaborator_manager" label="Collaborator Manager" language="fr" table="x_snc_createnotes_note"><sys_documentation action="INSERT_OR_UPDATE"><element>collaborator_manager</element><help/><hint/><label>Collaborator Manager</label><language>fr</language><name>x_snc_createnotes_note</name><plural/><sys_class_name>sys_documentation</sys_class_name><sys_created_by>h40009222</sys_created_by><sys_created_on>2025-02-04 12:17:08</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>2e31ca4d87ab16104102cd0a0cbb356f</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Collaborator Manager</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>sys_documentation_x_snc_createnotes_note_collaborator_manager_fr</sys_update_name><sys_updated_by>h40009222</sys_updated_by><sys_updated_on>2025-02-04 12:17:08</sys_updated_on><url/><url_target/></sys_documentation></sys_documentation></record_update>]]></payload>
+        <payload_hash>-1740842413</payload_hash>
+        <record_name>Yearly employee review.Collaborator Manager</record_name>
+        <reverted_from/>
+        <source>e180b378879f96104102cd0a0cbb35fc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-04 12:17:08</sys_created_on>
+        <sys_id>6231ca4d87ab16104102cd0a0cbb3574</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194d0e4920e0000001</sys_recorded_at>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-04 12:17:08</sys_updated_on>
+        <type>Étiquette de champ</type>
+        <update_guid>2631ca4d6fab161023073cb3d7abe872</update_guid>
+        <update_guid_history>2631ca4d6fab161023073cb3d7abe872:-1740842413</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-04 12:21:56</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sys_documentation">sys_documentation</sys_db_object>
+        <sys_id>0284f9dd564d4888827d122f8c9659e4</sys_id>
+        <sys_metadata>2e31ca4d87ab16104102cd0a0cbb356f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Collaborator Manager</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent display_value="">f0d3e1c5872b16104102cd0a0cbb3576</sys_parent>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sys_documentation_x_snc_createnotes_note_collaborator_manager_fr</sys_update_name>
+        <sys_update_version display_value="sys_documentation_x_snc_createnotes_note_collaborator_manager_fr">6231ca4d87ab16104102cd0a0cbb3574</sys_update_version>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-04 12:21:56</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
