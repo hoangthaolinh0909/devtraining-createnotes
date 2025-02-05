@@ -51,7 +51,7 @@
 		});
 	}
 
-	$rootScope.$on('selectReview', function(event,name) {
+	$rootScope.$on('selectRecord', function(event,name) {
 		c.data.table = $rootScope.reviewTable;
 		c.data.sys_id = $rootScope.reviewID;
 		c.data.action = "selectReview";
@@ -151,6 +151,23 @@
 		var result = dd + '/' + mm + '/' + yyyy;
 		return result;
 	}
+
+	spUtil.recordWatch($scope, "x_snc_createnotes_note", "numberANYTHING", function(r) {
+		c.data.table = r.data.table_name;
+		c.data.sys_id = r.data.sys_id;
+		c.data.action = "selectReview";
+		c.server.get({
+			table :  r.data.table_name,
+			sys_id : r.data.sys_id,
+			action : "selectReview"
+		}).then(function(r){
+			c.data = r.data;
+			var fields = r.data.f._fields
+			$scope.hasSelected = r.data.hasSelected;
+			setVarsValues(fields);
+			disableFields();
+		});
+	});
 
 	/*
 	if(c.data.table) {
@@ -589,7 +606,7 @@ label {
         <sys_created_on>2025-01-24 08:57:01</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>58f9a4e1875fd610e27da8240cbb3549</sys_id>
-        <sys_mod_count>797</sys_mod_count>
+        <sys_mod_count>807</sys_mod_count>
         <sys_name>Yearly Review Form</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -597,7 +614,7 @@ label {
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_58f9a4e1875fd610e27da8240cbb3549</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-04 20:05:44</sys_updated_on>
+        <sys_updated_on>2025-02-05 18:15:24</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default" ng-hide="!hasSelected">
   <div role="region" aria-label="Item Details">
     <div class="wrapper-md b-b break-word item-header clearfix" ng-class="{true: '', false: 'sc-sticky-item-header'}[!c.data.sc_cat_item.short_description]" style="top: 0px">

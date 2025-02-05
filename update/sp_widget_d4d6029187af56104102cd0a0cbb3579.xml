@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope, spUtil) {
+	/* widget controller */
+	var c = this;
+
+	$rootScope.$on('selectRecord', function(event,args) {
+		c.data.id = args[0];
+		c.data.view = args[1]
+		c.server.update().then(function(){
+			setTimeout(function(){
+				c.setState();
+			},300);
+		});
+	});
+
+	c.setState = function (){
+		var sId = "state_"+c.data.current_state;
+		var elem = document.getElementById(sId);
+		var sibling = elem.previousElementSibling;
+		
+		while (sibling != null) {
+			sibling.classList.add("completed");
+			sibling = sibling.previousElementSibling;
+		}
+	}
+
+	spUtil.recordWatch($scope, "x_snc_createnotes_note", "numberANYTHING", function(r) {
+		c.data.id = r.data.sys_id;
+		c.data.view = c.data.selected_view;
+		c.server.update({
+			id : r.data.sys_id,
+			viw : c.data.selected_view
+		}).then(function(r){
+			setTimeout(function(){
+				c.setState();
+			},200);		});
+	});
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.nav-tabs.wizard {
+  background-color: transparent;
+  padding: 0;
+  width: 100%;
+  margin: 1em auto;
+  border-radius: .25em;
+  clear: both;
+  border-bottom: none;
+  pointer-events: none;
+}
+
+.nav-tabs.wizard li {
+  width: 100%;
+  float: none;
+  margin-bottom: 3px;
+}
+
+.nav-tabs.wizard li&gt;* {
+  position: relative;
+  padding: 1em .8em .8em 2.5em;
+  color: #999999;
+  background-color: #dedede;
+  border-color: #dedede;
+}
+
+.nav-tabs.wizard li.completed&gt;* {
+  color: #fff !important;
+  background-color: #96c03d !important;
+  border-color: #96c03d !important;
+  border-bottom: none !important;
+}
+
+.nav-tabs.wizard li.active&gt;* {
+  color: #fff !important;
+  background-color: $brand-primary !important;
+  border-color: $brand-primary !important;
+  border-bottom: none !important;
+}
+
+.nav-tabs.wizard li::after:last-child {
+  border: none;
+}
+
+.nav-tabs.wizard &gt; li &gt; label {
+  opacity: 1;
+  font-size: 16px;
+  width:0 auto;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+}
+
+.nav-tabs.wizard label:hover {
+  color: #fff;
+  background-color: #2c3f4c;
+  border-color: #2c3f4c
+}
+
+span.nmbr {
+  display: inline-block;
+  padding: 10px 0 0 0;
+  background: #ffffff;
+  width: 35px;
+  line-height: 100%;
+  height: 35px;
+  margin: auto;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media(min-width:992px) {
+  .nav-tabs.wizard li {
+    position: relative;
+    padding: 0;
+    margin: 4px 4px 4px 0;
+    width: 19.6%;
+    float: left;
+    text-align: center;
+  }
+  .nav-tabs.wizard li.active label {
+    padding-top: 15px;
+  }
+  .nav-tabs.wizard li::after,
+  .nav-tabs.wizard li&gt;*::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 100%;
+    height: 0;
+    width: 0;
+    border: 45px solid transparent;
+    border-right-width: 0;
+    /*border-left-width: 20px*/
+  }
+  .nav-tabs.wizard li::after {
+    z-index: 1;
+    -webkit-transform: translateX(4px);
+    -moz-transform: translateX(4px);
+    -ms-transform: translateX(4px);
+    -o-transform: translateX(4px);
+    transform: translateX(4px);
+    border-left-color: #fff;
+    margin: 0
+  }
+  .nav-tabs.wizard li&gt;*::after {
+    z-index: 2;
+    border-left-color: inherit
+  }
+  .nav-tabs.wizard &gt; li:nth-of-type(1) &gt; label {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .nav-tabs.wizard li:last-child label {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .nav-tabs.wizard li:last-child {
+    margin-right: 0;
+  }
+  .nav-tabs.wizard li:last-child label:after,
+  .nav-tabs.wizard li:last-child:after {
+    content: "";
+    border: none;
+  }
+  span.nmbr {
+    display: none;
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>hvs_annnual_review_stepper_flow</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) { 
+
+}]]></link>
+        <name>HVS Annnual Review Stepper FLow</name>
+        <option_schema>[{"hint":"Field name to use for retrieving the main record states","name":"state_field","section":"other","label":"State field","type":"string"},{"hint":"Table where to retrieve state values","name":"table","section":"other","label":"Table","type":"string"},{"name":"selected_view","section":"other","default_value":"1","label":"Selected View","type":"integer"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	var query="";
+	data.check_table='x_snc_createnotes_note';
+
+	if(options.state_field) {
+		data.review_states = getOptionItems(options.state_field);
+	}
+
+	data.selected_view = options.selected_view;	
+	
+	if(input) {
+		data.selected_view =  input.view || options.selected_view;
+
+		if(input.id) {
+			var collabReviewGR = new GlideRecord(options.table);
+			if (collabReviewGR.get(input.id)) {
+				var CollabReviewObj = {};
+				$sp.getRecordValues(CollabReviewObj, collabReviewGR, options.state_field);
+				data.current_state = CollabReviewObj[options.state_field];
+			}
+		}
+	}
+
+	function getOptionItems(field) {
+		var inData = [];
+		var language = gs.getSession().getLanguage();
+		var choices = GlideChoiceList.getChoiceList("x_snc_createnotes_note", field);
+		var obj={};
+		var grForLabels = new GlideRecord("x_snc_createnotes_note");
+
+		for (i = 0; i < choices.getSize(); i++){
+			obj.value = choices.getChoice(i).getValue();
+			if(obj.value) {
+				obj.label = choices.getChoice(i).getLabel();
+				inData.push(obj);
+				obj={};
+			}
+		}
+		return inData;
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-05 07:20:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d4d6029187af56104102cd0a0cbb3579</sys_id>
+        <sys_mod_count>330</sys_mod_count>
+        <sys_name>HVS Annnual Review Stepper FLow</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_d4d6029187af56104102cd0a0cbb3579</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-05 18:36:08</sys_updated_on>
+        <template><![CDATA[<div ng-if="data.current_state" class="table">
+  <ul class="nav nav-tabs wizard">
+    <!-- ng-if="review_state-value!='onhold'"  -->
+    <li id="state_{{review_state.value}}" ng-class="{'active': review_state.value==data.current_state}" -ng-repeat="review_state in data.review_states">
+      <label data-toggle="tab" aria-expanded="false">
+        {{review_state.value}}
+      </label>
+    </li>
+  </ul>
+</div>
+
+<div ng-if="c.options.table==data.check_table && !data.current_state && c.data.selected_view" class="table">
+  <div class = "panel panel-heading col-md-11">
+    <h2 ng-if="c.data.selected_view==1" class="topic-header-title ng-binding">${annual_review_select_review}</h2>
+    <h2 ng-if="!c.data.selected_view==2" class="topic-header-title ng-binding">${annual_review_select_collaborator}</h2>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>d4d6029187af56104102cd0a0cbb3579</id>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-05 07:22:34</sys_created_on>
+        <sys_id>ed67069587af56104102cd0a0cbb3561</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-05 07:22:34</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

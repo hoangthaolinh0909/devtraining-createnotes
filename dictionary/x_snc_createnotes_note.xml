@@ -13,12 +13,12 @@
                 <element inactive_on_update="false" label="Validé" language="fr" sequence="10" value="validated"/>
                 <element inactive_on_update="false" label="Brouillon" language="fr" sequence="7" value="draft"/>
                 <element inactive_on_update="false" label="Terminé incomplet" language="fr" sequence="12" value="incompleted"/>
-                <element inactive_on_update="false" label="On hold" sequence="2" value="onhold"/>
+                <element inactive="true" inactive_on_update="true" label="On hold" sequence="2" value="onhold"/>
                 <element inactive_on_update="false" label="Validated" sequence="4" value="validated"/>
                 <element inactive_on_update="false" label="Completed" sequence="5" value="completed"/>
                 <element inactive_on_update="false" label="Closed incomplete" sequence="6" value="incompleted"/>
                 <element inactive_on_update="false" label="Terminé" language="fr" sequence="11" value="completed"/>
-                <element inactive_on_update="false" label="En attente" language="fr" sequence="9" value="onhold"/>
+                <element inactive="true" inactive_on_update="true" label="En attente" language="fr" sequence="9" value="onhold"/>
                 <element inactive_on_update="false" label="In progress" sequence="3" value="inprogress"/>
             </choice>
         </element>

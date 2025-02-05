@@ -3,8 +3,8 @@
         <class_name/>
         <order>2</order>
         <semantic_tag/>
-        <size>9</size>
-        <size_lg/>
+        <size/>
+        <size_lg>9</size_lg>
         <size_sm/>
         <size_xs/>
         <sp_row display_value="1">4b2956e1094232007f44e1046c8ff693</sp_row>
@@ -13,7 +13,7 @@
         <sys_created_on>2025-01-22 16:16:19</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>ab4b3f708713d6104102cd0a0cbb35bd</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>2</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -21,6 +21,6 @@
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_column_ab4b3f708713d6104102cd0a0cbb35bd</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-01-22 16:16:19</sys_updated_on>
+        <sys_updated_on>2025-02-05 13:09:16</sys_updated_on>
     </sp_column>
 </record_update>

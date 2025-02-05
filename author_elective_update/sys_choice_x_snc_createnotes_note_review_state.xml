@@ -40,7 +40,7 @@
             <dependent_value/>
             <element>review_state</element>
             <hint/>
-            <inactive>false</inactive>
+            <inactive>true</inactive>
             <label>On hold</label>
             <language>en</language>
             <name>x_snc_createnotes_note</name>
@@ -50,9 +50,9 @@
             <sys_created_on>2025-01-27 10:59:46</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
+            <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>h40009222</sys_updated_by>
-            <sys_updated_on>2025-01-27 11:28:16</sys_updated_on>
+            <sys_updated_on>2025-02-05 18:31:44</sys_updated_on>
             <value>onhold</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -173,7 +173,7 @@
             <dependent_value/>
             <element>review_state</element>
             <hint/>
-            <inactive>false</inactive>
+            <inactive>true</inactive>
             <label>En attente</label>
             <language>fr</language>
             <name>x_snc_createnotes_note</name>
@@ -183,9 +183,9 @@
             <sys_created_on>2025-01-27 10:59:54</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
+            <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>h40009222</sys_updated_by>
-            <sys_updated_on>2025-01-27 11:28:57</sys_updated_on>
+            <sys_updated_on>2025-02-05 18:31:47</sys_updated_on>
             <value>onhold</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">

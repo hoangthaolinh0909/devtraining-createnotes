@@ -6,13 +6,14 @@
 	var c = this;
 	// Use a position indicator to know which record to update
 	c.ReviewPos = 0;
-
+	c.data.selectedView=1;
+	
 	c.selectItem = function(reviewID) {  
 		// Set the position indicator to the index value passed in on select
 		$scope.collab_id = reviewID;
 		$rootScope.reviewID = $scope.collab_id;
 		$rootScope.reviewTable = 'x_snc_createnotes_note';
-		$rootScope.$emit('selectReview', $scope.collab_id);
+		$rootScope.$emit('selectRecord', [$scope.collab_id,c.data.selectedView]);
 	}
 	
 	if(!c.data.selectedView) c.data.selectedView=1
@@ -322,7 +323,7 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <sys_created_on>2019-05-30 18:13:04</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>06948fa8db3133000613a08a4896194c</sys_id>
-        <sys_mod_count>900</sys_mod_count>
+        <sys_mod_count>903</sys_mod_count>
         <sys_name>Yearly Review List</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
@@ -330,7 +331,7 @@ $brand-info: #38aaf4; //--now-color_alert--info-2
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_06948fa8db3133000613a08a4896194c</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-04 19:58:48</sys_updated_on>
+        <sys_updated_on>2025-02-05 14:34:52</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
   <div class="panel-heading clearfix btn-padding">
     <h3 class="panel-title pull-left">
