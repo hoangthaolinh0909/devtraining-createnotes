@@ -34,7 +34,9 @@
                 <element inactive_on_update="false" label="Very Dissatisfied" sequence="4" value="1"/>
             </choice>
         </element>
+        <element active="false" attributes="edge_encryption_enabled=true" function_definition="glidefunction:concat(collaborator_work_environment,'')" function_field="true" label="OK" max_length="255" name="rpt_ok" read_only="true" type="string"/>
         <element default="javascript:getNextObjNumberPadded();" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="Number" max_length="40" name="number" type="string" use_dynamic_default="true"/>
+        <element attributes="edge_encryption_enabled=true" function_definition="glidefunction:concat(collaborator_work_environment,'')" function_field="true" label="Workplace" max_length="255" name="rpt_workplace" read_only="true" type="string"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Solution-oriented and proactive" max_length="4000" name="manager_solution_oriented_proactive" type="glide_list"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Vision (identify, apply, respect) and contribution to department/unit mission" max_length="4000" name="manager_vision" type="glide_list"/>
         <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;// Add your code here&#13;&#10;&#9;return '';  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Work atmosphere and climate" max_length="4000" name="collaborator_work_atmosphere_climate" type="glide_list"/>

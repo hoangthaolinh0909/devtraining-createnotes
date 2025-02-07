@@ -11,19 +11,37 @@
 		c.server.update().then(function(){
 			setTimeout(function(){
 				c.setState();
-			},300);
+			},100);
 		});
 	});
 
 	c.setState = function (){
 		var sId = "state_"+c.data.current_state;
 		var elem = document.getElementById(sId);
-		var sibling = elem.previousElementSibling;
-		
-		while (sibling != null) {
-			sibling.classList.add("completed");
-			sibling = sibling.previousElementSibling;
+		if(elem) {
+			var sibling = elem.previousElementSibling;
+			while (sibling != null) {
+				sibling.classList.add("completed");
+				sibling = sibling.previousElementSibling;
+			}
 		}
+
+		var el_completed = document.getElementById("state_completed");
+		var el_incompleted = document.getElementById("state_incompleted");
+
+		if(c.data.current_state=='completed') {
+			if(el_incompleted) {
+				el_completed.classList.add("hide");
+				el_incompleted.firstChild.innerText=el_completed.firstChild.innerText;
+				el_incompleted.classList.add("active");
+			}
+		} 
+		else if(c.data.current_state=='incompleted') {
+			if(el_completed) {
+				el_completed.classList.add("hide");
+			}
+		}
+
 	}
 
 	spUtil.recordWatch($scope, "x_snc_createnotes_note", "numberANYTHING", function(r) {
@@ -35,7 +53,7 @@
 		}).then(function(r){
 			setTimeout(function(){
 				c.setState();
-			},200);		});
+			},100);		});
 	});
 
 };]]></client_script>
@@ -239,21 +257,21 @@ span.nmbr {
         <sys_created_on>2025-02-05 07:20:01</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>d4d6029187af56104102cd0a0cbb3579</sys_id>
-        <sys_mod_count>330</sys_mod_count>
+        <sys_mod_count>445</sys_mod_count>
         <sys_name>HVS Annnual Review Stepper FLow</sys_name>
-        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_package display_value="Collaborstor Yearly Reviews" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope display_value="Collaborstor Yearly Reviews">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_d4d6029187af56104102cd0a0cbb3579</sys_update_name>
         <sys_updated_by>h40009222</sys_updated_by>
-        <sys_updated_on>2025-02-05 18:36:08</sys_updated_on>
+        <sys_updated_on>2025-02-06 15:01:13</sys_updated_on>
         <template><![CDATA[<div ng-if="data.current_state" class="table">
   <ul class="nav nav-tabs wizard">
-    <!-- ng-if="review_state-value!='onhold'"  -->
-    <li id="state_{{review_state.value}}" ng-class="{'active': review_state.value==data.current_state}" -ng-repeat="review_state in data.review_states">
+    <!-- ng-if="review_state-value!= 'onhold'"  -->
+    <li id="state_{{review_state.value}}" ng-class="{'active': review_state.value==data.current_state}" ng-repeat="review_state in data.review_states">
       <label data-toggle="tab" aria-expanded="false">
-        {{review_state.value}}
+        {{review_state.label}}
       </label>
     </li>
   </ul>

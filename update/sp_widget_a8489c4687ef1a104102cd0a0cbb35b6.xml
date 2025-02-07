@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+	/* widget controller */
+	var c = this;
+
+	var chart1 = new Highcharts.Chart({  
+		chart: {  
+			renderTo: 'custom_report',  
+			type: 'column'  
+		},  
+		title: {
+			text: 'My custom title'
+		},
+		subtitle: {
+			text: 'My custom subtitle'
+		},  
+		xAxis: {  
+			categories: ['(Empty)', 'Solana Beach CA', 'New York NY', 'Atlanta GA', 'San Diego CA', 'Hamburg', 'Johannesburg', 'Raleigh NC', 'Salem OR', 'Salt Lake City', 'San Diego'],  
+			title: {  
+				text: null  
+			},  
+			labels: {  
+				rotation: -45  
+			}  
+		},  
+		yAxis: {  
+			min: 0,  
+			title: {  
+				text: null  
+			}  
+		},  
+		series: [{
+			'name': 'Open',
+			'legendIndex': 0,
+			'data': [5,1,1,2,2,1,1,2,5,4,5]
+		},
+						 {
+							 'name': 'Resolved',
+							 'legendIndex': 1,
+							 'data': [0,0,0,0,0,0,0,0,0,0,0]            
+						 }]  
+	});  
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>hvs_annual_review_reports</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>HVS Annual Review Reports</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	// Get my team review by status
+	data.isManager = checkIfManager(gs.getUserID());
+
+	if(data.isManager) {
+		data.myteamreviews_by_status = getMyTeamsCurrentReview(gs.getUserID());
+	}
+
+	function getOptionItems(field) {
+		var inData = [];
+		var language = gs.getSession().getLanguage();
+		var choices = GlideChoiceList.getChoiceList("x_snc_createnotes_note", field);
+		var obj={};
+		var grForLabels = new GlideRecord("x_snc_createnotes_note");
+
+		for (i = 0; i < choices.getSize(); i++){
+			obj.value = choices.getChoice(i).getValue();
+			if(obj.value) {
+				obj.label = choices.getChoice(i).getLabel();
+				inData.push(obj);
+				obj={};
+			}
+		}
+
+		return inData;
+	}
+	
+	data.review_states = getOptionItems('review_state');
+	console.log(">---------------");
+	console.log(data.review_states);
+	console.log("---------------<");
+
+	function getMyTeamsCurrentReview(userID) {
+		var arrResult = [];
+		var currentDate = new GlideDateTime();
+		var currentYear = currentDate.getYearUTC();
+
+		var grReviewsByStatus = new GlideAggregate('x_snc_createnotes_note');
+		grReviewsByStatus.addAggregate("count","review_state");
+		grReviewsByStatus.orderBy(("review_state"));
+		grReviewsByStatus.addEncodedQuery('collaborator.managerDYNAMIC' + userID + '^review_year=' + currentYear); 
+		grReviewsByStatus.query();
+		while (grReviewsByStatus.next()) {
+			//do things on the results
+			var reviewCount = grReviewsByStatus.getAggregate('COUNT', 'review_state');
+			console.log('LOG - Display the count for: ' + grReviewsByStatus.review_state.getDisplayValue() + ' is ' + reviewCount);
+			arrResult.push(
+				{
+					"state":grReviewsByStatus.review_state.getDisplayValue(), 
+					"count":reviewCount
+				}
+			);
+		}
+
+		return arrResult;
+	}
+
+	function checkIfManager(inUser) {
+		var retValue = false;
+		var grSysUser = new GlideRecord('sys_user');
+		grSysUser.addEncodedQuery("manager=" + inUser + "^active=true");
+		grSysUser.query();
+		if(grSysUser.getRowCount() > 0) {
+			retValue = true
+		}
+
+		return retValue;
+	}
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-07 07:12:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a8489c4687ef1a104102cd0a0cbb35b6</sys_id>
+        <sys_mod_count>51</sys_mod_count>
+        <sys_name>HVS Annual Review Reports</sys_name>
+        <sys_package display_value="Collaborstor Yearly Reviews" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Collaborstor Yearly Reviews">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_a8489c4687ef1a104102cd0a0cbb35b6</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-07 10:01:23</sys_updated_on>
+        <template><![CDATA[  <div id="custom_report">
+  </div>
+]]></template>
+    </sp_widget>
+</record_update>

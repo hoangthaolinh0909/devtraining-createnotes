@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_cubes">
+    <pa_cubes action="INSERT_OR_UPDATE">
+        <benchmarking>false</benchmarking>
+        <calendar>standard</calendar>
+        <calendar_freq/>
+        <conditions table="x_snc_createnotes_note">collaborator.managerDYNAMIC90d1921e5f510100a9ad2572f2b477fe^review_dateONThis year@javascript:gs.beginningOfThisYear()@javascript:gs.endOfThisYear()<item endquery="false" field="collaborator.manager" goto="false" newquery="false" operator="DYNAMIC" or="false" value="90d1921e5f510100a9ad2572f2b477fe"/>
+            <item endquery="false" field="review_date" goto="false" newquery="false" operator="ON" or="false" value="This year@javascript:gs.beginningOfThisYear()@javascript:gs.endOfThisYear()"/>
+        </conditions>
+        <description/>
+        <facts_table>x_snc_createnotes_note</facts_table>
+        <facts_table_pk/>
+        <facts_table_pktable/>
+        <facts_table_pkview/>
+        <frequency>80</frequency>
+        <max_record_fetch_count>50000</max_record_fetch_count>
+        <name>My Team Yearly Reviews</name>
+        <override_record_collection>false</override_record_collection>
+        <report_source/>
+        <report_source_updated_at/>
+        <sys_class_name>pa_cubes</sys_class_name>
+        <sys_created_by>h40009222</sys_created_by>
+        <sys_created_on>2025-02-07 09:39:30</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>32e9780a87639250e27da8240cbb3590</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>My Team Yearly Reviews</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Collaborstor Yearly Reviews" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Collaborstor Yearly Reviews">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>pa_cubes_32e9780a87639250e27da8240cbb3590</sys_update_name>
+        <sys_updated_by>h40009222</sys_updated_by>
+        <sys_updated_on>2025-02-07 09:41:19</sys_updated_on>
+    </pa_cubes>
+</record_update>
