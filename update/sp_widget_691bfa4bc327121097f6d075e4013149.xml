@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, runtimeState, meetingAgenda, CAB, i18n) {
+	// widget controller
+	var c = this;
+	var KEY = {
+		LEFT_ARROW: 37,
+		RIGHT_ARROW: 39,
+	};
+		
+	$scope.hideFormButton = function() {
+		var hideFormViewButton = $scope.change && $scope.change.sys_class_name.value != "change_request";
+		return hideFormViewButton;
+	};
+	
+	$scope.hideCalendar = function() {
+		var hideCalendarViewButton = ($scope.change && $scope.change.sys_class_name.value != "change_request") || ($scope.change && (($scope.change.start_date && $scope.change.start_date.value === "") || ($scope.change.end_date && $scope.change.end_date.value === "")));
+		if (hideCalendarViewButton && $scope.tab.selectedTabId === CAB.CAL_TAB)
+			$scope.tab.select(CAB.FORM_TAB); 
+		return hideCalendarViewButton;
+	};
+
+	function clearTaskAndReset() {
+		$scope.change = null;
+		$scope.tab.select(CAB.FORM_TAB);
+	}
+	
+	function refreshAgendaItem(agendaItemId) {
+		if (!agendaItemId) {
+			$scope.agendaItem = null;
+			clearTaskAndReset();
+			return;
+		}
+		
+		meetingAgenda.getAgendaItem(agendaItemId)
+		.then(function(agendaItem) {
+			$scope.agendaItem = agendaItem;
+			if (!agendaItem.task.record) {
+				clearTaskAndReset();
+				return;
+			}
+			
+			$scope.change = agendaItem.task.record;
+		}, clearTaskAndReset);
+	}
+
+	runtimeState.get($scope.data.meetingId)
+	.then(function(rs) {
+		$scope.rs = rs;
+		return meetingAgenda.get($scope.data.meetingId);
+	})
+	.then(function(agenda) {
+		$scope.agenda = agenda;
+
+		$scope.$watch(function() {
+			return runtimeState.getViewAgendaItem();
+		}, refreshAgendaItem);
+	});
+
+	$scope.CAB = CAB;
+	$scope.aria = {
+		panelDesc: function() {
+			if (!$scope.change)
+				return;
+
+			return i18n.format($scope.data.i18n.tabPanel, $scope.change.number.display_value);
+		},
+	};
+
+	$scope.meeting = {
+		viewingChange: function() {
+			return runtimeState.getViewAgendaItem() ? true : false;
+		}
+	};
+
+	$scope.aItm = {
+		canReadTask: function() {
+			return $scope.agendaItem && $scope.agendaItem.task && $scope.agendaItem.task.record;
+		},
+	};
+
+	$scope.tab = {
+		selected: function(tabId) {
+			return tabId === $scope.tab.selectedTabId;
+		},
+		select: function(tabId) {
+			$scope.tab.selectedTabId = tabId;
+		},
+		onClick: function($event, tabId) {
+			$scope.tab.select(tabId);
+		},
+		onKeydown: function($event, tabId) {
+			if ($event.which === KEY.LEFT_ARROW || $event.which === KEY.RIGHT_ARROW)
+				if (!$scope.tab.selected(CAB.CAL_TAB)) {
+					$scope.tab.select(CAB.CAL_TAB);
+					document.getElementById(CAB.CAL_TAB).focus();
+				}
+				else {
+					$scope.tab.select(CAB.FORM_TAB);
+					document.getElementById(CAB.FORM_TAB).focus();
+				}
+		},
+		selectedTabId: CAB.FORM_TAB
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.heading {&#13;
+  font-size: 14px;&#13;
+  height: 51px;&#13;
+  .title {&#13;
+	line-height: 30px;&#13;
+	vertical-align: middle;&#13;
+  }&#13;
+  background-color: $panel-default-heading-bg;&#13;
+  color: $gray-darker;&#13;
+  border-bottom: none;&#13;
+}&#13;
+&#13;
+.cols:not(:first-child) {&#13;
+  border-left: 1px solid $color-lighter;&#13;
+}&#13;
+&#13;
+.row {&#13;
+  display: table;&#13;
+  width: 100%;&#13;
+}&#13;
+&#13;
+.cols {&#13;
+	float: none;&#13;
+	display: table-cell;&#13;
+	vertical-align: top;&#13;
+}&#13;
+&#13;
+.btn-group {&#13;
+	.btn {&#13;
+      	height: 100%;&#13;
+		color: $color-darkest;&#13;
+		background-color: $navbar-default-bg;&#13;
+	}&#13;
+	.focus-tab {&#13;
+		color: $color-darkest;&#13;
+		background-color: $navpage-nav-selected-color;&#13;
+		border-color: $color-accent !important;&#13;
+		z-index: 2;&#13;
+  	}&#13;
+  	.glyphicon-folder-close {&#13;
+    	margin-top: -2px;&#13;
+	}&#13;
+	.glyphicon-calendar {&#13;
+    	margin-top: -2px;&#13;
+	}&#13;
+}&#13;
+&#13;
+.change-desc-wrap {&#13;
+	white-space: nowrap;&#13;
+	width: 600px;&#13;
+	text-overflow: ellipsis;&#13;
+	overflow: hidden;&#13;
+	display: inline-block;&#13;
+}&#13;
+&#13;
+.panel {&#13;
+	margin-bottom: 0px !important;&#13;
+	.meeting-not-started {&#13;
+		height: 55px;&#13;
+	}&#13;
+}&#13;
+&#13;
+.tab-body {&#13;
+	padding: 0;&#13;
+	min-height: 100px;&#13;
+  	.row {&#13;
+		margin: 0;&#13;
+		.cols {&#13;
+			padding: 0;&#13;
+		}&#13;
+	}&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>cab</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>CAB</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.i18n = {
+		tabPanel: gs.getMessage('Tab panel for current Change {0}'),
+		tabPanelDefault: gs.getMessage('Current Change tab panel'),
+		showForm: gs.getMessage('Show form'),
+		currentChangeTabsGroup: gs.getMessage('Current Change tabs group')
+	};
+
+	data.widget = {
+		form: $sp.getWidget("cab-form-widget", {}),
+		calendar: $sp.getWidget("cab-change-calendar", {})
+	};
+
+	data.meetingId = $sp.getParameter('sys_id'); // meeting id
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-10 21:37:46</sys_created_on>
+        <sys_id>691bfa4bc327121097f6d075e4013149</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CAB</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_691bfa4bc327121097f6d075e4013149</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-02-10 21:37:46</sys_updated_on>
+        <template><![CDATA[<div role="region" tabindex="0" ng-attr-aria-label="{{aria.panelDesc() || c.data.i18n.tabPanelDefault}}">
+<div class="panel panel-default">
+	<div class="panel-heading heading widget-heading" ng-class="{'meeting-not-started': !meeting.viewingChange()}">
+		<div ng-if="aItm.canReadTask()" class="change-desc-wrap title">
+			<span>{{change.number.display_value}} - <b>{{change.short_description.display_value}}</b></span>
+		</div>
+		<span ng-if="aItm.canReadTask()" class="pull-right">
+			<div class="btn-group" role="tablist" aria-label="{{::c.data.i18n.currentChangeTabsGroup}}">
+              	<button id="cab-form-tab" class="btn btn-primary btn-sm"
+                        ng-if="!hideFormButton()"
+						role="tab" aria-controls="cab-form-panel" aria-label="{{::c.data.i18n.showForm}}"
+						ng-attr-tabindex="{{tab.selected(CAB.FORM_TAB) ? 0 : -1}}"
+						ng-attr-aria-selected="{{tab.selected(CAB.FORM_TAB)}}"
+
+						ng-class="{'focus-tab': tab.selected(CAB.FORM_TAB)}"
+						ng-keydown="tab.onKeydown($event, CAB.FORM_TAB)"
+						ng-click="tab.onClick($event, CAB.FORM_TAB)"
+
+						uib-tooltip="{{::c.data.i18n.showForm}}" tooltip-placement="bottom" tooltip-append-to-body="true">
+					<span class="glyphicon glyphicon-folder-close"></span>
+					<span class="sr-only">{{::c.data.i18n.showForm}}</span>
+				</button>
+			  	<button id="cab-cal-tab" class="btn btn-primary btn-sm"
+			  			ng-if="!hideCalendar()"
+						role="tab" aria-controls="cab-cal-panel" aria-label="${Show calendar}"
+						ng-attr-tabindex="{{tab.selected(CAB.CAL_TAB) ? 0 : -1}}"
+						ng-attr-aria-selected="{{tab.selected(CAB.CAL_TAB)}}"
+
+						ng-class="{'focus-tab': tab.selected(CAB.CAL_TAB)}"
+						ng-keydown="tab.onKeydown($event, CAB.CAL_TAB)"
+						ng-click="tab.onClick($event, CAB.CAL_TAB)"
+
+						uib-tooltip="${Show calendar}" tooltip-placement="bottom" tooltip-append-to-body="true">
+					<span class="glyphicon glyphicon-calendar"></span>
+					<span class="sr-only">${Show calendar}</span>
+			  	</button>
+			</div>
+		</span>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<div class="panel-body tab-body">
+	<div id="cab-form-panel" role="tabpanel" aria-labelledby="cab-form-tab"
+		 ng-attr-tabindex="{{tab.selected(CAB.FORM_TAB) ? 0 : -1}}"
+		 ng-attr-aria-hidden="{{!tab.selected(CAB.FORM_TAB)}}">
+		<div ng-show="tab.selected(CAB.FORM_TAB)" class="row">
+			<div class="col-xs-12 cols"><sp-widget widget="data.widget.form"></sp-widget></div>
+		</div>
+	 </div>
+  	<div id="cab-cal-panel" role="tabpanel" aria-labelledby="cab-cal-tab"
+		 ng-attr-tabindex="{{tab.selected(CAB.CAL_TAB) ? 0 : -1}}"
+		 ng-attr-aria-hidden="{{!tab.selected(CAB.CAL_TAB)}}">
+		<div ng-if="tab.selected(CAB.CAL_TAB)" class="row">
+			<div class="col-xs-12 cols"><sp-widget widget="data.widget.calendar"></sp-widget></div>
+	   </div>
+	</div>
+</div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

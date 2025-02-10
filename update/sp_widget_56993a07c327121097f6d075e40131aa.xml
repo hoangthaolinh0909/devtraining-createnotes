@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope, spModal, spUtil) {
+	/* widget controller */
+	var c = this;
+	
+	// Constants
+	var OPEN_RECORD_WIDGET_SYS_ID = c.data.openRecordWidget;
+	var OPEN_LIST_WIDGET_SYS_ID = c.data.openListWidget;
+	var PLAYBOOK_OPEN_RECORD = "PLAYBOOK#OPEN_RECORD";
+	var PLAYBOOK_OPEN_LIST = "PLAYBOOK#OPEN_LIST";
+	var PLAYBOOK_RECORD_GENERATED = "PLAYBOOK#RECORD_GENERATED";
+	var PLAYBOOK_ADD_NOTIFICATIONS = "PLAYBOOK#ADD_NOTIFICATIONS";
+	var PLAYBOOK_LINK_TO_DESTINATION = "PLAYBOOK#LINK_TO_DESTINATION";
+
+	// Setting height from data right away
+	var height = c.data.height;
+	$scope.iframeHeight = height;
+	
+	// Required Params
+	var table = c.data.table;
+	var sysId = c.data.sysId;
+	var layoutType = c.data.layoutType;
+	var playbookUIBPageUrl = c.data.playbookUIBPageUrl;
+
+	// Optional Params
+	// All params are Kebab/Dashed case so we 
+	// do not have convert the case in the loop
+	var params = {
+		"playbook-experience-id": c.data.playbookExperienceId,
+		"compact-mode" : c.data.compactMode,
+		"activity-view" : c.data.activityView,
+		"query" : c.data.query,
+		"full-width-cards" : c.data.fullWidthCards,
+		"hide-stage-picker" : c.data.hideStagePicker,
+		"number-of-stages" : c.data.numberOfStages,
+		"title": c.data.title,
+		"url-suffix": c.data.urlSuffix,
+		"extra-params": c.data.extraParams
+	};
+	
+	// Theme variables 
+	var theme = c.data.theme;
+	var themeVariant = c.data.themeVariant;
+
+	// Base URL
+	// If playbookUIBPageUrl is not our default base do not use the layoutType param
+	var url = (playbookUIBPageUrl === "/now/playbook-portal/playbook") ? 
+		playbookUIBPageUrl+"/"+table+"/"+sysId+"/"+layoutType : 
+		playbookUIBPageUrl+"/"+table+"/"+sysId;
+
+	// Add params to url if any are found that are truthy
+	for(var key in params) {
+		if(!params.hasOwnProperty(key) || !params[key]) continue;
+
+		if(params[key] && !url.includes("params")) url += "/params"; 
+
+		if(params[key]) url += "/" + key + "/" + params[key];
+	}
+	
+	// Adding theme variables to url if any are found that are truthy
+	// Example: ?themeId=31bf91ae07203010e03948f78ad30095&themeVariantId=1
+	if(theme)
+		url += "?themeId=" + theme;
+	
+	if(theme && themeVariant)
+		url += "&themeVariantId=" + themeVariant;
+	
+	// setting the url used by the iframe here
+	$scope.iframeUrl = url;
+
+	window.addEventListener("storage", function(event) {
+		
+		if(!event || !event.key) return;
+
+		var key = event.key;
+		var newValue = event.newValue;
+		
+		if(key === PLAYBOOK_OPEN_RECORD) 
+			openRecordInModal(newValue);
+		
+		if(key === PLAYBOOK_OPEN_LIST) 
+			openListInModal(newValue);
+
+		if(key === PLAYBOOK_RECORD_GENERATED) 
+			handleRecordGenerator(newValue);
+		
+		if(key === PLAYBOOK_ADD_NOTIFICATIONS)
+			handleAddNotifications(newValue);
+
+		if (key === PLAYBOOK_LINK_TO_DESTINATION)
+			handleLinkToDestination(newValue);
+		
+	});
+
+	function openModal(options) {
+		var modalOptions = options;
+
+		spModal.open(modalOptions);
+	}
+
+	function openRecordInModal(newValue) {
+		var value = JSON.parse(newValue);
+		
+		var widgetInput = {
+			table: value.table,
+			sys_id: value.sys_id,
+			isPopup: c.data.openRecordIsPopUp,
+			preventUrlUpdateOnSubmit: c.data.openRecordModalPreventUrlUpdateOnSubmit
+		};
+		
+		if(c.data.openRecordModalView)
+			widgetInput.view = c.data.openRecordModalView;
+
+		if(value.params && value.params.query)
+			widgetInput.query = value.params.query;
+		
+		var modalOptions = {
+			widget: OPEN_RECORD_WIDGET_SYS_ID, 
+			widgetInput: widgetInput,
+			size: c.data.openRecordModalSize,
+			title: c.data.openRecordModalTitle,
+			message: c.data.openRecordModalMessage
+		};
+		
+		if(c.data.openRecordModalButtons)
+			modalOptions.buttons = JSON.parse(c.data.openRecordModalButtons);
+		
+		// Open form widget in the spModal
+		openModal(modalOptions);
+	}
+
+	function openListInModal(newValue) {
+		var value = JSON.parse(newValue);
+			
+		var widgetInput = {
+				table: value.table || value.fields && value.fields.table,
+				view: value.listView || value.params && value.params.listView,
+				filter: value.query || value.params && value.params.query
+		};
+		
+		var modalOptions = {
+			widget: OPEN_LIST_WIDGET_SYS_ID, 
+			widgetInput: widgetInput,
+			size: c.data.openListModalSize,
+			title: c.data.openListModalTitle,
+			message: c.data.openListModalMessage
+		};
+		
+		if(c.data.openListModalButtons)
+			modalOptions.buttons = JSON.parse(c.data.openListModalButtons);
+			
+		// Open list widget in the spModal
+		openModal(modalOptions);
+	}
+
+	function handleRecordGenerator(newValue) {
+		if(!newValue) return;
+		
+		var value = JSON.parse(newValue);
+
+		if(!value) return;
+
+		var urlParams = new URLSearchParams(window.location.search);
+		urlParams.set("sys_id", value.sysId);
+		urlParams.set("table", value.table);
+
+		window.location.search = urlParams;
+	}
+
+	function handleLinkToDestination(newValue) {
+		if(!newValue) return;
+		
+		var value = JSON.parse(newValue);
+
+		if(!value || !value.external) return;
+
+		window.open(value.external, value.targetRoute || '_blank');
+	}
+
+	function handleAddNotifications(newValue) {
+		if(!newValue) return;
+		
+		var value = JSON.parse(newValue);
+
+		if(!value || !value.notifications) return;
+		
+		var notifications = value.notifications;
+		var INFO = "info";
+		var ERROR = "error";
+		var CRITICAL = "critical";
+		
+		for(var i in notifications) {
+			var notification = notificationFactory(notifications[i]);
+			if(notification.type === INFO) {
+				spUtil.addInfoMessage(notification.message);
+				continue;
+			}
+			
+			if(notification.type === ERROR || notification.type === CRITICAL) {
+				spUtil.addErrorMessage(notification.message);
+				continue;
+			}
+			
+			if(notification.message) 
+				spUtil.addTrivialMessage(notification.message);
+		}
+		
+		
+	}
+
+	function notificationFactory(notification) {
+
+		if(notification.status) {
+			var message = notification.content;
+			var header = notification.header;
+			
+			if(header && message)
+				message = header + " - " + message;
+			else if(header && !message)
+				message = header;
+			
+			return {
+				type: notification.status,
+				message: message
+			};
+		}
+
+		return notification;
+	}
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Official widget to embed a Playbook into the Service Portal</description>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Copy of Playbook</name>
+        <option_schema>[{"hint":"Height of the playbook. If not specified, it will be 850px","name":"height","section":"Presentation","label":"Height","type":"string"},{"hint":"Use this to override the url of the playbook UIB page. If not specified, it will be /now/playbook-portal/playbook","name":"playbook_uib_page_url","section":"Data","label":"Playbook UIB Page URL","type":"string"},{"hint":"The title of the Open Record modal. Will be empty if nothing is provided here.","name":"open_record_modal_title","section":"Presentation","label":"Open Record Modal Title","type":"string"},{"hint":"The message of the Open Record modal. Will be empty if nothing is provided here.","name":"open_record_modal_message","section":"Presentation","label":"Open Record Modal Message","type":"string"},{"hint":"The buttons of the Open Record modal. Will be empty if nothing is provided here. Needs to be valid JSON.","name":"open_record_modal_buttons","section":"Presentation","label":"Open Record Modal Buttons","type":"string"},{"displayValue":"Widget","hint":"The Sys ID of the widget for Open Record. Will be using form widget if nothing is provided here.","name":"open_record_modal_widget","section":"Data","default_value":"fd1f4ec347730200ba13a5554ee490c0","label":"Open Record Widget","type":"reference","value":"sp_widget","ed":{"reference":"sp_widget"}},{"hint":"The view to open the record in. This data will also come from the payload of Playbook Open Record.","name":"open_record_modal_view","section":"Presentation","label":"Open Record Modal View","type":"string"},{"hint":"Will show the reference picker inside the form if is pop up is true.","name":"open_record_is_pop_up","section":"Data","default_value":"true","label":"Open Record Is Pop Up","type":"boolean"},{"hint":"Will default to 'lg' if no other options is provided","name":"open_record_modal_size","section":"Presentation","label":"Open Record Modal Size","type":"choice","choices":[{"label":"sm","value":"sm"},{"label":"md","value":"md"},{"label":"lg","value":"lg"}]},{"hint":"The title of the Open List modal. Will be empty if nothing is provided here.","name":"open_list_modal_title","section":"Presentation","label":"Open List Modal Title","type":"string"},{"hint":"The message of the Open List modal. Will be empty if nothing is provided here.","name":"open_list_modal_message","section":"Presentation","label":"Open List Modal Message","type":"string"},{"hint":"The buttons of the Open List modal. Will be empty if nothing is provided here. Needs to be valid JSON.","name":"open_list_modal_buttons","section":"Presentation","label":"Open List Modal Buttons","type":"string"},{"displayValue":"Widget","hint":"The Sys ID of the widget for Open List. Will be using the Data Table from Instance Definition as a default.","name":"open_list_modal_widget","section":"Data","default_value":"38058ff1cb11020000f8d856634c9c8c","label":"Open List Widget","type":"reference","value":"sp_widget","ed":{"reference":"sp_widget"}},{"hint":"Will default to 'lg' if no other options is provided","name":"open_list_modal_size","section":"Presentation","label":"Open List Modal Size","type":"choice","choices":[{"label":"sm","value":"sm"},{"label":"md","value":"md"},{"label":"lg","value":"lg"}]},{"hint":"The activity view for your playbook","name":"activity_view","section":"Presentation","default_value":"focused","label":"Activity View","type":"choice","choices":[{"label":"focused","value":"focused"},{"label":"stacked","value":"stacked"}]},{"displayValue":"Playbook Experience","hint":"The playbook configuration record. If the value is in the url, then that will override what is in this field. If none is provided then the Global Playbook experience will be used.","name":"playbook_experience_id","section":"Presentation","default_value":"98e09a560f2200102920c912d4767e1a","label":"Playbook Experience ID","type":"reference","value":"sys_playbook_experience","ed":{"reference":"sys_playbook_experience"}},{"hint":"Prevent the url from updating when a new record is submitted from the open record modal","name":"open_record_modal_prevent_url_update_on_submit","section":"Presentation","default_value":"true","label":"Open Record Modal Prevent URL Update on Submit","type":"boolean"},{"hint":"Allows for arbitrary data to be passed from the widget to the underlying UIB page","name":"extra_params","section":"Data","default_value":"","label":"Extra Params","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles>snc_external,snc_internal</roles>
+        <script><![CDATA[(function() {
+	// Get the portal record so it can used in multiple places
+	var portalRecord = $sp.getPortalRecord();
+	
+	/*
+	 * If the system property of ux_portal_theme_to_uib_theme_mapping exists that maps to the theme 
+	 * this widget is currently inside it will use that mapping record to set portal theme to a 
+	 * corresponding UXF theme
+	 */
+	function setThemeMapping() {
+		// Getting theme mapping via system property of ux_portal_theme_to_uib_theme_mapping
+		var themeID = portalRecord.getValue("theme"); // get the sys property themeID
+		
+		var gr = new GlideRecord("sys_properties");
+		gr.addQuery("name","CONTAINS","ux_portal_theme_to_uib_theme_mapping."+themeID);
+		gr.orderByDesc("sys_created_on");
+		gr.query();
+		gr.next();
+
+		var mappingValues = gr.getValue("value");
+
+		if(mappingValues) {
+			var themeValues = mappingValues.split(",");
+			var uxTheme = themeValues[0] && themeValues[0].trim();
+			var styleTheme = themeValues[1] && themeValues[1].trim();
+			data.theme = uxTheme || null;
+			data.themeVariant = styleTheme || null;
+		}
+	}
+
+	setThemeMapping();
+	
+	// Required Params
+	data.table = $sp.getParameter("table") || "interaction";
+	data.layoutType = $sp.getParameter("layoutType") || "monolith";
+	data.sysId = $sp.getParameter("sys_id") || "-1";
+
+	// URL Suffix
+	data.urlSuffix = portalRecord.getDisplayValue("url_suffix") || null;
+	
+	// Optional Params
+	data.playbookExperienceId = $sp.getParameter("playbookExperienceId") || options.playbook_experience_id;
+	data.compactMode = $sp.getParameter("compactMode") || false;
+	data.activityView = $sp.getParameter("activityView") || options.activity_view || "focused";
+	data.query = $sp.getParameter("query") || null;
+	data.fullWidthCards = $sp.getParameter("fullWidthCards") || false;
+	data.hideStagePicker = $sp.getParameter("hideStagePicker") || false;
+	data.numberOfStages = $sp.getParameter("numberOfStages") || null;
+	data.height = options.height ? options.height + "px" : "856px";
+	data.title = $sp.getParameter("title") || null;
+	data.extraParams = options.extra_params || null;
+	
+	// Playbook UIB Page URL
+	data.playbookUIBPageUrl = options.playbook_uib_page_url || "/now/playbook-portal/playbook";
+	
+	// Open Record
+	data.openRecordWidget = options.open_record_modal_widget || "fd1f4ec347730200ba13a5554ee490c0";
+	data.openRecordModalSize = options.open_record_modal_size || "lg";
+	data.openRecordModalTitle = options.open_record_modal_title || "";
+	data.openRecordModalMessage = options.open_record_modal_message || "";
+	data.openRecordModalButtons = options.open_record_modal_buttons || null;
+	data.openRecordModalView = options.open_record_modal_view || null;
+	data.openRecordIsPopUp = options.open_record_is_pop_up || true;
+	data.openRecordModalPreventUrlUpdateOnSubmit = (options.open_record_modal_prevent_url_update_on_submit === true || 
+		options.open_record_modal_prevent_url_update_on_submit === "true") ? true : false;
+	
+	// Open List
+	data.openListWidget = options.open_list_modal_widget || "8ae61f55cb21020000f8d856634c9c93";
+	data.openListModalSize = options.open_list_modal_size || "lg";
+	data.openListModalTitle = options.open_list_modal_title || "";
+	data.openListModalMessage = options.open_list_modal_message || "";
+	data.openListModalButtons = options.open_list_modal_buttons || null;
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-10 21:31:15</sys_created_on>
+        <sys_id>56993a07c327121097f6d075e40131aa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy of Playbook</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_56993a07c327121097f6d075e40131aa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-02-10 21:31:15</sys_updated_on>
+        <template><![CDATA[<iframe 
+        id="widget-playbook" 
+        ng-src="{{iframeUrl}}" 
+        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-downloads" 
+        width="100%" 
+        height="{{iframeHeight}}" 
+        frameBorder="0" 
+/>
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>56993a07c327121097f6d075e40131aa</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-02-10 21:31:23</sys_created_on>
+        <sys_id>5ca97ac7c327121097f6d075e401312a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-02-10 21:31:23</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
